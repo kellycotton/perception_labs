@@ -1,0 +1,9 @@
+﻿frequency_sound_1,modulate,mod_hz,frequency_sound_2
+250,yes,2,252
+500,yes,2,502
+6000,yes,10,6010
+8000,yes,2,8002
+250,no,0,250
+1000,no,0,1000
+2000,no,0,2000
+6000,no,0,6000

@@ -1,0 +1,10 @@
+﻿mask_type,delay_cond,delay_duration
+none,1,0
+both,1,0
+both,2,2
+both,3,3
+both,4,4
+both,5,6
+both,6,9
+both,7,12
+both,8,15

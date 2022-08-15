@@ -1,0 +1,7 @@
+﻿search_type,block_type
+parallel,red_square_blue_square
+parallel,red_square_red_circle
+parallel,big_circle_little_circle
+serial,red_square_red_circle_blue_square
+serial,vertical_bar_horizontal_bar
+serial,t_l
