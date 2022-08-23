@@ -13,3 +13,5 @@ Created by Kelly Cotton 2022
  1. Visual Search 
  1. Attentional Blink 
  1. Tone Discrimination by Frequency
+ 1. Melody Discrimination 
+ 1. Categorical Perception (incomplete)
