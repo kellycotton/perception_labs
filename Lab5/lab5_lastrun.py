@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.1.4),
-    on Mon Aug 15 10:26:42 2022
+    on Mon Aug 22 14:39:20 2022
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -71,7 +71,7 @@ frameTolerance = 0.001  # how close to onset before 'same' frame
 win = visual.Window(
     size=[1440, 900], fullscr=True, screen=0, 
     winType='pyglet', allowGUI=False, allowStencil=False,
-    monitor='testMonitor', color=[0.0000, 0.0000, 0.0000], colorSpace='rgb',
+    monitor='testMonitor', color=[0.6549, 0.6549, 0.6549], colorSpace='rgb',
     blendMode='avg', useFBO=True, 
     units='norm')
 # store frame rate of monitor if we can measure it
@@ -97,9 +97,12 @@ defaultKeyboard = keyboard.Keyboard(backend='iohub')
 
 # Initialize components for Routine "setup"
 setupClock = core.Clock()
+import random
+import scipy
+
 trial_n = 1
 block_n = 1
-array_present_time = 1 # seconds
+array_present_time = 100 # seconds
 fix_time = 0.5
 
 block_total = 3
@@ -117,10 +120,73 @@ stim_t_opacity = 0
 
 
 
+def get_box_centers(num_box):
+    #calculate minimum safe distance
+    min_dist = 1.0 / (num_box+4) + .1
+       
+    # check minimum distance for all element pair distances
+    while True:
+        # generate random positions
+        centers = np.random.uniform(-0.9, 0.9, [(num_box+4), 2])   
+        
+        dist = scipy.spatial.distance.pdist(centers)
+        
+        if dist.min() > min_dist:
+            break
+        
+    centers_list = list(centers)
+            
+    return centers_list
+
+def generate_blue_square(position):
+    stim = visual.Rect(
+        win=win, name='blue_square',
+        width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
+        ori=0.0, pos=position, anchor='center',
+        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
+        opacity=1.0, depth=-3.0, interpolate=True)
+    return stim
+
+def generate_red_circle(position):
+    stim = visual.ShapeStim(
+        win=win, name='red_circle',
+        size=(0.0375, 0.05), vertices='circle',
+        ori=0.0, pos=position, anchor='center',
+        lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
+        opacity=1.0, depth=-4.0, interpolate=True)
+    return stim
+
+def generate_little_circle(position):
+    stim = visual.ShapeStim(
+        win=win, name='red_circle',
+        size=(0.0375, 0.05), vertices='circle',
+        ori=0.0, pos=position, anchor='center',
+        lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
+        opacity=1.0, depth=-4.0, interpolate=True)
+    return stim
+
+def generate_horizontal_bar(position):
+    stim = visual.Rect(
+            win=win, name='horizontal_bar',
+            width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
+            ori=90.0, pos=position, anchor='center',
+            lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
+            opacity=1.0, depth=-7.0, interpolate=True)
+    return stim
+
+def generate_red_bar(position):
+    stim = visual.Rect(
+            win=win, name='red_bar',
+            width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
+            ori=0.0, pos=position, anchor='center',
+            lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
+            opacity=1.0, depth=-9.0, interpolate=True)
+    return stim
+
 # Initialize components for Routine "instructions"
 instructionsClock = core.Clock()
 instruct_text = visual.TextStim(win=win, name='instruct_text',
-    text="Welcome to the experiment!\n\nDuring the experiment, you will see some objects on the screen. \n\nPress the RIGHT arrow if the target is present and press the LEFT arrow if the target is absent.\n\nLet's try a few practice trials.\n\nPress SPACE to begin the practice.",
+    text="Welcome to the experiment!\n\nDuring the experiment, you will see various objects on the screen. Your job is to search for a specific target object that is different from the other objects. The target object may or may not be on the screen. For each block of trials, you will first see a screen showing which target object to search for during that block. For each trial, you will have to search for the target and indicate if it is present or not.\n\nPress the RIGHT arrow if the target is present and press the LEFT arrow if the target is absent.\n\nLet's try a few practice trials.\n\nPress SPACE to begin the practice.",
     font='Open Sans',
     pos=(0, 0), height=0.05, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
@@ -186,7 +252,7 @@ trialClock = core.Clock()
 
 big_circle = visual.ShapeStim(
     win=win, name='big_circle',
-    size=(0.075, 0.1), vertices='circle',
+    size=[1.0, 1.0], vertices='circle',
     ori=0.0, pos=[0,0], anchor='center',
     lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
     opacity=1.0, depth=-3.0, interpolate=True)
@@ -209,23 +275,20 @@ stim_t = visual.TextStim(win=win, name='stim_t',
     color='black', colorSpace='rgb', opacity=1.0, 
     languageStyle='LTR',
     depth=-6.0);
-
-# Initialize components for Routine "response"
-responseClock = core.Clock()
-text_4 = visual.TextStim(win=win, name='text_4',
+text_6 = visual.TextStim(win=win, name='text_6',
     text='Target Absent \n>',
     font='Open Sans',
-    pos=(.2, 0), height=0.05, wrapWidth=None, ori=0.0, 
+    pos=(.2, -.95), height=0.03, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
-    depth=-1.0);
-text_2 = visual.TextStim(win=win, name='text_2',
+    depth=-7.0);
+text_7 = visual.TextStim(win=win, name='text_7',
     text='Target Present \n<',
     font='Open Sans',
-    pos=(-.2, 0), height=0.05, wrapWidth=None, ori=0.0, 
+    pos=(-.2, -.95), height=0.03, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
-    depth=-2.0);
+    depth=-8.0);
 key_resp = keyboard.Keyboard()
 
 # Initialize components for Routine "feedback"
@@ -308,7 +371,7 @@ trialClock = core.Clock()
 
 big_circle = visual.ShapeStim(
     win=win, name='big_circle',
-    size=(0.075, 0.1), vertices='circle',
+    size=[1.0, 1.0], vertices='circle',
     ori=0.0, pos=[0,0], anchor='center',
     lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
     opacity=1.0, depth=-3.0, interpolate=True)
@@ -331,23 +394,20 @@ stim_t = visual.TextStim(win=win, name='stim_t',
     color='black', colorSpace='rgb', opacity=1.0, 
     languageStyle='LTR',
     depth=-6.0);
-
-# Initialize components for Routine "response"
-responseClock = core.Clock()
-text_4 = visual.TextStim(win=win, name='text_4',
+text_6 = visual.TextStim(win=win, name='text_6',
     text='Target Absent \n>',
     font='Open Sans',
-    pos=(.2, 0), height=0.05, wrapWidth=None, ori=0.0, 
+    pos=(.2, -.95), height=0.03, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
-    depth=-1.0);
-text_2 = visual.TextStim(win=win, name='text_2',
+    depth=-7.0);
+text_7 = visual.TextStim(win=win, name='text_7',
     text='Target Present \n<',
     font='Open Sans',
-    pos=(-.2, 0), height=0.05, wrapWidth=None, ori=0.0, 
+    pos=(-.2, -.95), height=0.03, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
-    depth=-2.0);
+    depth=-8.0);
 key_resp = keyboard.Keyboard()
 
 # Initialize components for Routine "end_block"
@@ -817,71 +877,38 @@ for thisBlocks_practice in blocks_practice:
         
         stims = []
         
+        locations = get_box_centers(set_size)
+        
         if (block_type == "red_square_blue_square") & target_present == True:
             red_square_opacity = 1
             for x in range(set_size-1):
-                stim = visual.Rect(
-                    win=win, name='blue_square',
-                    width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                    opacity=1.0, depth=-3.0, interpolate=True)
+                stim = generate_blue_square(locations.pop())
                 stims.append(stim)
         elif (block_type == "red_square_red_circle") & target_present == True:
             red_square_opacity = 1
             for x in range(set_size-1):
-                stim = visual.ShapeStim(
-                    win=win, name='red_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-4.0, interpolate=True)
+                stim = generate_red_circle(locations.pop())
                 stims.append(stim)
         elif (block_type == "big_circle_little_circle") & target_present == True:
             big_circle_opacity = 1
             for x in range(set_size-1):
-                stim = visual.ShapeStim(
-                    win=win, name='little_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-5.0, interpolate=True)
+                stim = generate_little_circle(locations.pop())
                 stims.append(stim)
         elif (block_type == "red_square_red_circle_blue_square") & target_present == True:
             red_square_opacity = 1
             for x in range(int((set_size-1) /2)):
-                stim = visual.ShapeStim(
-                    win=win, name='red_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-4.0, interpolate=True)
+                stim = generate_red_circle(locations.pop())
                 stims.append(stim)
             for x in range(int(set_size/2)):
-                stim = visual.Rect(
-                    win=win, name='blue_square',
-                    width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                    opacity=1.0, depth=-3.0, interpolate=True)
+                stim = generate_blue_square(locations.pop())
                 stims.append(stim)
         elif (block_type == "vertical_bar_horizontal_bar") & target_present == True:
             vertical_bar_opacity = 1
             for x in range(int((set_size-1) /2)):
-                stim = visual.Rect(
-                    win=win, name='horizontal_bar',
-                    width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                    ori=90.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                    opacity=1.0, depth=-7.0, interpolate=True)
+                stim = generate_horizontal_bar(locations.pop())
                 stims.append(stim)
             for x in range(int(set_size /2)):
-                stim = visual.Rect(
-                    win=win, name='red_bar',
-                    width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-9.0, interpolate=True)
+                stim = generate_red_bar(locations.pop())
                 stims.append(stim)
         elif (block_type == "t_l") & target_present == True:
             stim_t_opacity = 1
@@ -889,98 +916,55 @@ for thisBlocks_practice in blocks_practice:
                 stim = visual.TextStim(win=win, name='stim_l',
                     text='L',
                     font='Open Sans',
-                    pos=(random()-0.5, random()-0.5), height=0.05, wrapWidth=None, ori=0.0, 
+                    pos=locations.pop(), height=0.05, wrapWidth=None, ori=0.0, 
                     color='black', colorSpace='rgb', opacity=1.0, 
                     languageStyle='LTR',
                     depth=-11.0);
                 stims.append(stim)
         elif (block_type == "red_square_blue_square") :
             for x in range(set_size):
-                stim = visual.Rect(
-                    win=win, name='blue_square',
-                    width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                    opacity=1.0, depth=-3.0, interpolate=True)
+                stim = generate_blue_square(locations.pop())
                 stims.append(stim)
         elif (block_type == "red_square_red_circle") :
             for x in range(set_size):
-                stim = visual.ShapeStim(
-                    win=win, name='red_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-4.0, interpolate=True)
+                stim = generate_red_circle(locations.pop())
                 stims.append(stim)
         elif (block_type == "big_circle_little_circle") :
             for x in range(set_size):
-                stim = visual.ShapeStim(
-                    win=win, name='little_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-5.0, interpolate=True)
+                stim = generate_little_circle(locations.pop())
                 stims.append(stim)
         elif (block_type == "red_square_red_circle_blue_square") :
             if set_size == 1:
                 for x in range(set_size):
-                    stim = visual.ShapeStim(
-                            win=win, name='red_circle',
-                            size=(0.0375, 0.05), vertices='circle',
-                            ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                            lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                            opacity=1.0, depth=-4.0, interpolate=True)
+                    stim = generate_red_circle(locations.pop())
                     stims.append(stim)
             else:
                 for x in range(int(set_size/2)):
-                    stim = visual.ShapeStim(
-                            win=win, name='red_circle',
-                            size=(0.0375, 0.05), vertices='circle',
-                            ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                            lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                            opacity=1.0, depth=-4.0, interpolate=True)
+                    stim = generate_red_circle(locations.pop())
                     stims.append(stim)
+        
                 for x in range(int(set_size/2)):
-                    stim = visual.Rect(
-                        win=win, name='blue_square',
-                        width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
-                        ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                        opacity=1.0, depth=-3.0, interpolate=True)
+                    stim = generate_blue_square(locations.pop())
                     stims.append(stim)
         elif (block_type == "vertical_bar_horizontal_bar") :
             if set_size == 1:
                 for x in range(set_size):
-                    stim = visual.Rect(
-                        win=win, name='horizontal_bar',
-                        width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                        ori=90.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                        opacity=1.0, depth=-7.0, interpolate=True)
+                    stim = generate_horizontal_bar(locations.pop())
                     stims.append(stim)
             else:
                 for x in range(int(set_size/2)):
-                    stim = visual.Rect(
-                        win=win, name='horizontal_bar',
-                        width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                        ori=90.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                        opacity=1.0, depth=-7.0, interpolate=True)
+                    stim = generate_horizontal_bar(locations.pop())
                     stims.append(stim)
+        
                 for x in range(int(set_size/2)):
-                    stim = visual.Rect(
-                        win=win, name='red_bar',
-                        width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                        ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                        lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                        opacity=1.0, depth=-9.0, interpolate=True)
+                    stim = generate_red_bar(locations.pop())
                     stims.append(stim)
         elif (block_type == "t_l") :
             for x in range(set_size):
                 stim = visual.TextStim(win=win, name='stim_l',
                     text='L',
                     font='Open Sans',
-                    pos=(random()-0.5, random()-0.5), height=0.05, wrapWidth=None, ori=0.0, 
+                    pos=locations.pop(), height=0.05, wrapWidth=None, ori=0.0, 
                     color='black', colorSpace='rgb', opacity=1.0, 
                     languageStyle='LTR',
                     depth=-11.0);
@@ -988,15 +972,19 @@ for thisBlocks_practice in blocks_practice:
         for stim in stims:
             stim.setAutoDraw(True)
         big_circle.setOpacity(big_circle_opacity)
-        big_circle.setPos((random()-0.5, random()-0.5))
+        big_circle.setPos([locations.pop()[0]])
+        big_circle.setSize((0.075, 0.1))
         vertical_bar.setOpacity(vertical_bar_opacity)
-        vertical_bar.setPos((random()-0.5, random()-0.5))
+        vertical_bar.setPos([locations.pop()[0]])
         red_square.setOpacity(red_square_opacity)
-        red_square.setPos((random()-0.5, random()-0.5))
+        red_square.setPos([locations.pop()[0]])
         stim_t.setOpacity(stim_t_opacity)
-        stim_t.setPos((random()-0.5, random()-0.5))
+        stim_t.setPos([locations.pop()])
+        key_resp.keys = []
+        key_resp.rt = []
+        _key_resp_allKeys = []
         # keep track of which components have finished
-        trialComponents = [big_circle, vertical_bar, red_square, stim_t]
+        trialComponents = [big_circle, vertical_bar, red_square, stim_t, text_6, text_7, key_resp]
         for thisComponent in trialComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
@@ -1087,84 +1075,23 @@ for thisBlocks_practice in blocks_practice:
                     win.timeOnFlip(stim_t, 'tStopRefresh')  # time at next scr refresh
                     stim_t.setAutoDraw(False)
             
-            # check for quit (typically the Esc key)
-            if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
-                core.quit()
-            
-            # check if all components have finished
-            if not continueRoutine:  # a component has requested a forced-end of Routine
-                break
-            continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in trialComponents:
-                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                    continueRoutine = True
-                    break  # at least one component has not yet finished
-            
-            # refresh the screen
-            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                win.flip()
-        
-        # -------Ending Routine "trial"-------
-        for thisComponent in trialComponents:
-            if hasattr(thisComponent, "setAutoDraw"):
-                thisComponent.setAutoDraw(False)
-        red_square_opacity = 0
-        big_circle_opacity = 0
-        vertical_bar_opacity = 0
-        stim_t_opacity = 0
-        
-        for stim in stims:
-            stim.setAutoDraw(False)
-        # the Routine "trial" was not non-slip safe, so reset the non-slip timer
-        routineTimer.reset()
-        
-        # ------Prepare to start Routine "response"-------
-        continueRoutine = True
-        # update component parameters for each repeat
-        key_resp.keys = []
-        key_resp.rt = []
-        _key_resp_allKeys = []
-        # keep track of which components have finished
-        responseComponents = [text_4, text_2, key_resp]
-        for thisComponent in responseComponents:
-            thisComponent.tStart = None
-            thisComponent.tStop = None
-            thisComponent.tStartRefresh = None
-            thisComponent.tStopRefresh = None
-            if hasattr(thisComponent, 'status'):
-                thisComponent.status = NOT_STARTED
-        # reset timers
-        t = 0
-        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        responseClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
-        frameN = -1
-        
-        # -------Run Routine "response"-------
-        while continueRoutine:
-            # get current time
-            t = responseClock.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=responseClock)
-            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
-            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-            # update/draw components on each frame
-            
-            # *text_4* updates
-            if text_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # *text_6* updates
+            if text_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                text_4.frameNStart = frameN  # exact frame index
-                text_4.tStart = t  # local t and not account for scr refresh
-                text_4.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(text_4, 'tStartRefresh')  # time at next scr refresh
-                text_4.setAutoDraw(True)
+                text_6.frameNStart = frameN  # exact frame index
+                text_6.tStart = t  # local t and not account for scr refresh
+                text_6.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(text_6, 'tStartRefresh')  # time at next scr refresh
+                text_6.setAutoDraw(True)
             
-            # *text_2* updates
-            if text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # *text_7* updates
+            if text_7.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                text_2.frameNStart = frameN  # exact frame index
-                text_2.tStart = t  # local t and not account for scr refresh
-                text_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(text_2, 'tStartRefresh')  # time at next scr refresh
-                text_2.setAutoDraw(True)
+                text_7.frameNStart = frameN  # exact frame index
+                text_7.tStart = t  # local t and not account for scr refresh
+                text_7.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(text_7, 'tStartRefresh')  # time at next scr refresh
+                text_7.setAutoDraw(True)
             
             # *key_resp* updates
             waitOnFlip = False
@@ -1201,7 +1128,7 @@ for thisBlocks_practice in blocks_practice:
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in responseComponents:
+            for thisComponent in trialComponents:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -1210,15 +1137,24 @@ for thisBlocks_practice in blocks_practice:
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # -------Ending Routine "response"-------
-        for thisComponent in responseComponents:
+        # -------Ending Routine "trial"-------
+        for thisComponent in trialComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
+        red_square_opacity = 0
+        big_circle_opacity = 0
+        vertical_bar_opacity = 0
+        stim_t_opacity = 0
+        
         
         if search_type == "parallel":
-            total_accuracy_parallel[set_size_condition] += key_resp.corr
+            if key_resp.corr == 1:
+                total_accuracy_parallel[set_size_condition] += key_resp.rt
         else:
-            total_accuracy_serial[set_size_condition] += key_resp.corr
+            if key_resp.corr == 1:
+                total_accuracy_serial[set_size_condition] += key_resp.rt
+        for stim in stims:
+            stim.setAutoDraw(False)
         # check responses
         if key_resp.keys in ['', [], None]:  # No response was made
             key_resp.keys = None
@@ -1232,7 +1168,7 @@ for thisBlocks_practice in blocks_practice:
         trials_practice.addData('key_resp.corr', key_resp.corr)
         if key_resp.keys != None:  # we had a response
             trials_practice.addData('key_resp.rt', key_resp.rt)
-        # the Routine "response" was not non-slip safe, so reset the non-slip timer
+        # the Routine "trial" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
         # ------Prepare to start Routine "feedback"-------
@@ -1699,71 +1635,38 @@ for thisBlock in blocks:
         
         stims = []
         
+        locations = get_box_centers(set_size)
+        
         if (block_type == "red_square_blue_square") & target_present == True:
             red_square_opacity = 1
             for x in range(set_size-1):
-                stim = visual.Rect(
-                    win=win, name='blue_square',
-                    width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                    opacity=1.0, depth=-3.0, interpolate=True)
+                stim = generate_blue_square(locations.pop())
                 stims.append(stim)
         elif (block_type == "red_square_red_circle") & target_present == True:
             red_square_opacity = 1
             for x in range(set_size-1):
-                stim = visual.ShapeStim(
-                    win=win, name='red_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-4.0, interpolate=True)
+                stim = generate_red_circle(locations.pop())
                 stims.append(stim)
         elif (block_type == "big_circle_little_circle") & target_present == True:
             big_circle_opacity = 1
             for x in range(set_size-1):
-                stim = visual.ShapeStim(
-                    win=win, name='little_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-5.0, interpolate=True)
+                stim = generate_little_circle(locations.pop())
                 stims.append(stim)
         elif (block_type == "red_square_red_circle_blue_square") & target_present == True:
             red_square_opacity = 1
             for x in range(int((set_size-1) /2)):
-                stim = visual.ShapeStim(
-                    win=win, name='red_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-4.0, interpolate=True)
+                stim = generate_red_circle(locations.pop())
                 stims.append(stim)
             for x in range(int(set_size/2)):
-                stim = visual.Rect(
-                    win=win, name='blue_square',
-                    width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                    opacity=1.0, depth=-3.0, interpolate=True)
+                stim = generate_blue_square(locations.pop())
                 stims.append(stim)
         elif (block_type == "vertical_bar_horizontal_bar") & target_present == True:
             vertical_bar_opacity = 1
             for x in range(int((set_size-1) /2)):
-                stim = visual.Rect(
-                    win=win, name='horizontal_bar',
-                    width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                    ori=90.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                    opacity=1.0, depth=-7.0, interpolate=True)
+                stim = generate_horizontal_bar(locations.pop())
                 stims.append(stim)
             for x in range(int(set_size /2)):
-                stim = visual.Rect(
-                    win=win, name='red_bar',
-                    width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-9.0, interpolate=True)
+                stim = generate_red_bar(locations.pop())
                 stims.append(stim)
         elif (block_type == "t_l") & target_present == True:
             stim_t_opacity = 1
@@ -1771,98 +1674,55 @@ for thisBlock in blocks:
                 stim = visual.TextStim(win=win, name='stim_l',
                     text='L',
                     font='Open Sans',
-                    pos=(random()-0.5, random()-0.5), height=0.05, wrapWidth=None, ori=0.0, 
+                    pos=locations.pop(), height=0.05, wrapWidth=None, ori=0.0, 
                     color='black', colorSpace='rgb', opacity=1.0, 
                     languageStyle='LTR',
                     depth=-11.0);
                 stims.append(stim)
         elif (block_type == "red_square_blue_square") :
             for x in range(set_size):
-                stim = visual.Rect(
-                    win=win, name='blue_square',
-                    width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                    opacity=1.0, depth=-3.0, interpolate=True)
+                stim = generate_blue_square(locations.pop())
                 stims.append(stim)
         elif (block_type == "red_square_red_circle") :
             for x in range(set_size):
-                stim = visual.ShapeStim(
-                    win=win, name='red_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-4.0, interpolate=True)
+                stim = generate_red_circle(locations.pop())
                 stims.append(stim)
         elif (block_type == "big_circle_little_circle") :
             for x in range(set_size):
-                stim = visual.ShapeStim(
-                    win=win, name='little_circle',
-                    size=(0.0375, 0.05), vertices='circle',
-                    ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                    lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                    opacity=1.0, depth=-5.0, interpolate=True)
+                stim = generate_little_circle(locations.pop())
                 stims.append(stim)
         elif (block_type == "red_square_red_circle_blue_square") :
             if set_size == 1:
                 for x in range(set_size):
-                    stim = visual.ShapeStim(
-                            win=win, name='red_circle',
-                            size=(0.0375, 0.05), vertices='circle',
-                            ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                            lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                            opacity=1.0, depth=-4.0, interpolate=True)
+                    stim = generate_red_circle(locations.pop())
                     stims.append(stim)
             else:
                 for x in range(int(set_size/2)):
-                    stim = visual.ShapeStim(
-                            win=win, name='red_circle',
-                            size=(0.0375, 0.05), vertices='circle',
-                            ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                            lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                            opacity=1.0, depth=-4.0, interpolate=True)
+                    stim = generate_red_circle(locations.pop())
                     stims.append(stim)
+        
                 for x in range(int(set_size/2)):
-                    stim = visual.Rect(
-                        win=win, name='blue_square',
-                        width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],
-                        ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                        opacity=1.0, depth=-3.0, interpolate=True)
+                    stim = generate_blue_square(locations.pop())
                     stims.append(stim)
         elif (block_type == "vertical_bar_horizontal_bar") :
             if set_size == 1:
                 for x in range(set_size):
-                    stim = visual.Rect(
-                        win=win, name='horizontal_bar',
-                        width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                        ori=90.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                        opacity=1.0, depth=-7.0, interpolate=True)
+                    stim = generate_horizontal_bar(locations.pop())
                     stims.append(stim)
             else:
                 for x in range(int(set_size/2)):
-                    stim = visual.Rect(
-                        win=win, name='horizontal_bar',
-                        width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                        ori=90.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',
-                        opacity=1.0, depth=-7.0, interpolate=True)
+                    stim = generate_horizontal_bar(locations.pop())
                     stims.append(stim)
+        
                 for x in range(int(set_size/2)):
-                    stim = visual.Rect(
-                        win=win, name='red_bar',
-                        width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],
-                        ori=0.0, pos=(random()-0.5, random()-0.5), anchor='center',
-                        lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',
-                        opacity=1.0, depth=-9.0, interpolate=True)
+                    stim = generate_red_bar(locations.pop())
                     stims.append(stim)
         elif (block_type == "t_l") :
             for x in range(set_size):
                 stim = visual.TextStim(win=win, name='stim_l',
                     text='L',
                     font='Open Sans',
-                    pos=(random()-0.5, random()-0.5), height=0.05, wrapWidth=None, ori=0.0, 
+                    pos=locations.pop(), height=0.05, wrapWidth=None, ori=0.0, 
                     color='black', colorSpace='rgb', opacity=1.0, 
                     languageStyle='LTR',
                     depth=-11.0);
@@ -1870,15 +1730,19 @@ for thisBlock in blocks:
         for stim in stims:
             stim.setAutoDraw(True)
         big_circle.setOpacity(big_circle_opacity)
-        big_circle.setPos((random()-0.5, random()-0.5))
+        big_circle.setPos([locations.pop()[0]])
+        big_circle.setSize((0.075, 0.1))
         vertical_bar.setOpacity(vertical_bar_opacity)
-        vertical_bar.setPos((random()-0.5, random()-0.5))
+        vertical_bar.setPos([locations.pop()[0]])
         red_square.setOpacity(red_square_opacity)
-        red_square.setPos((random()-0.5, random()-0.5))
+        red_square.setPos([locations.pop()[0]])
         stim_t.setOpacity(stim_t_opacity)
-        stim_t.setPos((random()-0.5, random()-0.5))
+        stim_t.setPos([locations.pop()])
+        key_resp.keys = []
+        key_resp.rt = []
+        _key_resp_allKeys = []
         # keep track of which components have finished
-        trialComponents = [big_circle, vertical_bar, red_square, stim_t]
+        trialComponents = [big_circle, vertical_bar, red_square, stim_t, text_6, text_7, key_resp]
         for thisComponent in trialComponents:
             thisComponent.tStart = None
             thisComponent.tStop = None
@@ -1969,84 +1833,23 @@ for thisBlock in blocks:
                     win.timeOnFlip(stim_t, 'tStopRefresh')  # time at next scr refresh
                     stim_t.setAutoDraw(False)
             
-            # check for quit (typically the Esc key)
-            if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
-                core.quit()
-            
-            # check if all components have finished
-            if not continueRoutine:  # a component has requested a forced-end of Routine
-                break
-            continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in trialComponents:
-                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                    continueRoutine = True
-                    break  # at least one component has not yet finished
-            
-            # refresh the screen
-            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                win.flip()
-        
-        # -------Ending Routine "trial"-------
-        for thisComponent in trialComponents:
-            if hasattr(thisComponent, "setAutoDraw"):
-                thisComponent.setAutoDraw(False)
-        red_square_opacity = 0
-        big_circle_opacity = 0
-        vertical_bar_opacity = 0
-        stim_t_opacity = 0
-        
-        for stim in stims:
-            stim.setAutoDraw(False)
-        # the Routine "trial" was not non-slip safe, so reset the non-slip timer
-        routineTimer.reset()
-        
-        # ------Prepare to start Routine "response"-------
-        continueRoutine = True
-        # update component parameters for each repeat
-        key_resp.keys = []
-        key_resp.rt = []
-        _key_resp_allKeys = []
-        # keep track of which components have finished
-        responseComponents = [text_4, text_2, key_resp]
-        for thisComponent in responseComponents:
-            thisComponent.tStart = None
-            thisComponent.tStop = None
-            thisComponent.tStartRefresh = None
-            thisComponent.tStopRefresh = None
-            if hasattr(thisComponent, 'status'):
-                thisComponent.status = NOT_STARTED
-        # reset timers
-        t = 0
-        _timeToFirstFrame = win.getFutureFlipTime(clock="now")
-        responseClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
-        frameN = -1
-        
-        # -------Run Routine "response"-------
-        while continueRoutine:
-            # get current time
-            t = responseClock.getTime()
-            tThisFlip = win.getFutureFlipTime(clock=responseClock)
-            tThisFlipGlobal = win.getFutureFlipTime(clock=None)
-            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-            # update/draw components on each frame
-            
-            # *text_4* updates
-            if text_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # *text_6* updates
+            if text_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                text_4.frameNStart = frameN  # exact frame index
-                text_4.tStart = t  # local t and not account for scr refresh
-                text_4.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(text_4, 'tStartRefresh')  # time at next scr refresh
-                text_4.setAutoDraw(True)
+                text_6.frameNStart = frameN  # exact frame index
+                text_6.tStart = t  # local t and not account for scr refresh
+                text_6.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(text_6, 'tStartRefresh')  # time at next scr refresh
+                text_6.setAutoDraw(True)
             
-            # *text_2* updates
-            if text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+            # *text_7* updates
+            if text_7.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
                 # keep track of start time/frame for later
-                text_2.frameNStart = frameN  # exact frame index
-                text_2.tStart = t  # local t and not account for scr refresh
-                text_2.tStartRefresh = tThisFlipGlobal  # on global time
-                win.timeOnFlip(text_2, 'tStartRefresh')  # time at next scr refresh
-                text_2.setAutoDraw(True)
+                text_7.frameNStart = frameN  # exact frame index
+                text_7.tStart = t  # local t and not account for scr refresh
+                text_7.tStartRefresh = tThisFlipGlobal  # on global time
+                win.timeOnFlip(text_7, 'tStartRefresh')  # time at next scr refresh
+                text_7.setAutoDraw(True)
             
             # *key_resp* updates
             waitOnFlip = False
@@ -2083,7 +1886,7 @@ for thisBlock in blocks:
             if not continueRoutine:  # a component has requested a forced-end of Routine
                 break
             continueRoutine = False  # will revert to True if at least one component still running
-            for thisComponent in responseComponents:
+            for thisComponent in trialComponents:
                 if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
                     continueRoutine = True
                     break  # at least one component has not yet finished
@@ -2092,15 +1895,24 @@ for thisBlock in blocks:
             if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
                 win.flip()
         
-        # -------Ending Routine "response"-------
-        for thisComponent in responseComponents:
+        # -------Ending Routine "trial"-------
+        for thisComponent in trialComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
+        red_square_opacity = 0
+        big_circle_opacity = 0
+        vertical_bar_opacity = 0
+        stim_t_opacity = 0
+        
         
         if search_type == "parallel":
-            total_accuracy_parallel[set_size_condition] += key_resp.corr
+            if key_resp.corr == 1:
+                total_accuracy_parallel[set_size_condition] += key_resp.rt
         else:
-            total_accuracy_serial[set_size_condition] += key_resp.corr
+            if key_resp.corr == 1:
+                total_accuracy_serial[set_size_condition] += key_resp.rt
+        for stim in stims:
+            stim.setAutoDraw(False)
         # check responses
         if key_resp.keys in ['', [], None]:  # No response was made
             key_resp.keys = None
@@ -2114,7 +1926,7 @@ for thisBlock in blocks:
         trials.addData('key_resp.corr', key_resp.corr)
         if key_resp.keys != None:  # we had a response
             trials.addData('key_resp.rt', key_resp.rt)
-        # the Routine "response" was not non-slip safe, so reset the non-slip timer
+        # the Routine "trial" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         thisExp.nextEntry()
         
@@ -2232,11 +2044,11 @@ msg_2 = 'Serial Search Results:\n\n'
 set_sizes = [1,2,4,8,16,32]
 
 for i in range(6):
-    msg_1 += f"{set_sizes[i]}: {round(total_accuracy_parallel[i]/(trial_n*2*block_total*block_total_multiplier), 2)}\n"
+    msg_1 += f"Set size {set_sizes[i]}: {round(total_accuracy_parallel[i]/(trial_n*2*block_total*block_total_multiplier), 2) * 100} ms\n"
     thisExp.addData(f"parallel set size {set_sizes[i]} mean", round(total_accuracy_parallel[i]/(trial_n*2*block_total*block_total_multiplier), 2))
 
 for i in range(6):
-    msg_2 += f"{set_sizes[i]}: {round(total_accuracy_serial[i]/(trial_n*2*block_total*block_total_multiplier), 2)}\n"
+    msg_2 += f"{set_sizes[i]}: {round(total_accuracy_serial[i]/(trial_n*2*block_total*block_total_multiplier), 2) * 100} ms\n"
     thisExp.addData(f"serial set size {set_sizes[i]} mean", round(total_accuracy_serial[i]/(trial_n*2*block_total*block_total_multiplier), 2))
 
     

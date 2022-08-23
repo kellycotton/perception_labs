@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.1.4),
-    on Mon Aug 15 10:23:15 2022
+    on Mon Aug 22 09:53:25 2022
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -106,8 +106,8 @@ dot_size = (0.05, 0.05)
 dot_pos_resp = [0,0]
 fix_time = .5
 block_n = 1
-trial_n = 1
-block_total = 2
+trial_n = 5
+block_total = 4
 trial_total = 1
 i = 0
 
@@ -124,7 +124,7 @@ error_hsv = [0]*6
 # Initialize components for Routine "instructions"
 instructionsClock = core.Clock()
 instruct_text = visual.TextStim(win=win, name='instruct_text',
-    text="Welcome to the experiment!\n\nDuring this experiment, you will see two circles on the screen. The left circle will colored while the right circle will initially be gray. When you move your mouse, the gray circle will begin to change color. Your job is to adjust the color of the right circle until it matches the color of the left circle. When the two circles match, click the mouse button to submit your response and begin the next trial.\n\nLet's try a few practice trials.\n\nPress SPACE to begin the practice.",
+    text="Welcome to the experiment!\n\nDuring this experiment, you will see two circles on the screen. The left circle will be colored while the right circle will initially be gray. When you move your mouse, the gray circle will begin to change color. Your job is to adjust the color of the right circle until it matches the color of the left circle. When the two circles match, click the mouse button to submit your response and begin the next trial.\n\nLet's try a few practice trials.\n\nPress SPACE to begin the practice.",
     font='Open Sans',
     pos=(0, 0), height=0.03, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
@@ -1644,7 +1644,7 @@ continueRoutine = True
 msg_1 = 'Color Space 1 Mean Error:\n\n'
 msg_2 = 'Color Space 2 Mean Error:\n\n'
 
-colors = ["RED", "GREEN", "BLUE", "YELLOW", "PURPLE", "ORANGE"]
+colors = ["RED", "ORANGE", "YELLOW", "GREEN", "BLUE", "PURPLE"]
 
 for i in range(6):
     msg_1 += f"{colors[i]}: {round(error_rgb[i]/(trial_n*block_total), 2)}\n"

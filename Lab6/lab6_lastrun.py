@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.1.4),
-    on Mon Aug 15 10:33:43 2022
+    on Mon Aug 22 17:31:38 2022
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -109,11 +109,8 @@ block_n = 1
 trial_n = 5
 trial_total = 1
 
-total_accuracy_all_miss = [0] * 8
-total_accuracy_t1_only = [0] * 8
-total_accuracy_t2_only = [0] * 8
-total_accuracy_t1_miss = [0] * 8
-total_accuracy_t1_t2 = [0] * 8
+total_accuracy_t2_t1 = [0] * 8
+total_accuracy_t1 = [0] * 8
 
 win.mouseVisible = False
 
@@ -204,6 +201,38 @@ feedback_text2 = visual.TextStim(win=win, name='feedback_text2',
     languageStyle='LTR',
     depth=-1.0);
 key_resp_feedback = keyboard.Keyboard()
+
+# Initialize components for Routine "final"
+finalClock = core.Clock()
+end_text = visual.TextStim(win=win, name='end_text',
+    text='Results:',
+    font='Open Sans',
+    pos=(0, .4), height=0.05, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-1.0);
+end_text_1 = visual.TextStim(win=win, name='end_text_1',
+    text='',
+    font='Open Sans',
+    pos=(-.1, 0), height=0.03, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-2.0);
+end_text_2 = visual.TextStim(win=win, name='end_text_2',
+    text='',
+    font='Open Sans',
+    pos=(.1, 0), height=0.03, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-3.0);
+end_text_6 = visual.TextStim(win=win, name='end_text_6',
+    text='Record this result.\n\nPress SPACE when you are ready to end the experiment.',
+    font='Open Sans',
+    pos=(0, -.35), height=0.05, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-4.0);
+key_resp_end = keyboard.Keyboard()
 
 # Initialize components for Routine "end_practice"
 end_practiceClock = core.Clock()
@@ -304,45 +333,24 @@ end_text = visual.TextStim(win=win, name='end_text',
 end_text_1 = visual.TextStim(win=win, name='end_text_1',
     text='',
     font='Open Sans',
-    pos=(-.4, 0), height=0.03, wrapWidth=None, ori=0.0, 
+    pos=(-.1, 0), height=0.03, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=-2.0);
 end_text_2 = visual.TextStim(win=win, name='end_text_2',
     text='',
     font='Open Sans',
-    pos=(-.15, 0), height=0.03, wrapWidth=None, ori=0.0, 
+    pos=(.1, 0), height=0.03, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=-3.0);
-end_text_3 = visual.TextStim(win=win, name='end_text_3',
-    text='',
-    font='Open Sans',
-    pos=(0, 0), height=0.03, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=-4.0);
-end_text_4 = visual.TextStim(win=win, name='end_text_4',
-    text='',
-    font='Open Sans',
-    pos=(.15, 0), height=0.03, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=-5.0);
-end_text_5 = visual.TextStim(win=win, name='end_text_5',
-    text='',
-    font='Open Sans',
-    pos=(.4, 0), height=0.03, wrapWidth=None, ori=0.0, 
-    color='white', colorSpace='rgb', opacity=None, 
-    languageStyle='LTR',
-    depth=-6.0);
 end_text_6 = visual.TextStim(win=win, name='end_text_6',
     text='Record this result.\n\nPress SPACE when you are ready to end the experiment.',
     font='Open Sans',
     pos=(0, -.35), height=0.05, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
-    depth=-7.0);
+    depth=-4.0);
 key_resp_end = keyboard.Keyboard()
 
 # Create some handy timers
@@ -1099,16 +1107,12 @@ for thisPractice_trial_2 in practice_trials_2:
     else:
         feedback_msg_2 = f"\nYour first answer was incorrect. The correct answer was {stim_letters[1]}."
         
-    if (key_resp_1.corr == 0) and (key_resp_2.corr == 0):
-        total_accuracy_all_miss[lag_cond-1] += 1
-    elif (key_resp_1.corr == 1) and (key_resp_2.corr == 0):
-        total_accuracy_t1_only[lag_cond-1] += 1
-    elif (key_resp_1.corr == 0) and (key_resp_2.corr == 1):
-        total_accuracy_t2_only[lag_cond-1] += 1
-    elif (key_resp_1.corr == 0):
-        total_accuracy_t1_miss[lag_cond-1] += 1
-    elif (key_resp_1.corr == 1) and (key_resp_2.corr == 1):
-        total_accuracy_t1_t2[lag_cond-1] += 1
+    if (key_resp_1.corr == 1) and (key_resp_2.corr == 1):
+        total_accuracy_t2_t1[lag_cond-1] += 1
+    
+    if (key_resp_1.corr == 1):
+        total_accuracy_t1[lag_cond-1] += 1
+    
     
     # check responses
     if key_resp_2.keys in ['', [], None]:  # No response was made
@@ -1225,17 +1229,142 @@ for thisPractice_trial_2 in practice_trials_2:
 # completed 1.0 repeats of 'practice_trials_2'
 
 
+# ------Prepare to start Routine "final"-------
+continueRoutine = True
+# update component parameters for each repeat
+msg_1 = 'T1 Accuracy\n\n'
+msg_2 = 'T2|T1\n\n'
+
+
+for i in range(8):
+    msg_1 += f"Lag {i+1}:   {round((total_accuracy_t1[i])/(trial_n*block_n), 2)}\n"
+    thisExp.addData(f"Lag {i+1} total_accuracy_t2_miss_t1", round((total_accuracy_t1[i])/(trial_n*block_n), 2))
+    
+for i in range(8):
+    msg_2 += f"{round((total_accuracy_t2_t1[i])/(trial_n*block_n), 2)/round((total_accuracy_t1[i])/(trial_n*block_n), 2)}\n"
+    thisExp.addData(f"Lag {i+1} total_accuracy_t2_t1", round((total_accuracy_t2_t1[i])/(trial_n*block_n), 2)/round((total_accuracy_t1[i])/(trial_n*block_n), 2))
+
+end_text_1.setText(msg_1)
+end_text_2.setText(msg_2)
+key_resp_end.keys = []
+key_resp_end.rt = []
+_key_resp_end_allKeys = []
+# keep track of which components have finished
+finalComponents = [end_text, end_text_1, end_text_2, end_text_6, key_resp_end]
+for thisComponent in finalComponents:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+# reset timers
+t = 0
+_timeToFirstFrame = win.getFutureFlipTime(clock="now")
+finalClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+frameN = -1
+
+# -------Run Routine "final"-------
+while continueRoutine:
+    # get current time
+    t = finalClock.getTime()
+    tThisFlip = win.getFutureFlipTime(clock=finalClock)
+    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *end_text* updates
+    if end_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text.frameNStart = frameN  # exact frame index
+        end_text.tStart = t  # local t and not account for scr refresh
+        end_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text, 'tStartRefresh')  # time at next scr refresh
+        end_text.setAutoDraw(True)
+    
+    # *end_text_1* updates
+    if end_text_1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_1.frameNStart = frameN  # exact frame index
+        end_text_1.tStart = t  # local t and not account for scr refresh
+        end_text_1.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_1, 'tStartRefresh')  # time at next scr refresh
+        end_text_1.setAutoDraw(True)
+    
+    # *end_text_2* updates
+    if end_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_2.frameNStart = frameN  # exact frame index
+        end_text_2.tStart = t  # local t and not account for scr refresh
+        end_text_2.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_2, 'tStartRefresh')  # time at next scr refresh
+        end_text_2.setAutoDraw(True)
+    
+    # *end_text_6* updates
+    if end_text_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_6.frameNStart = frameN  # exact frame index
+        end_text_6.tStart = t  # local t and not account for scr refresh
+        end_text_6.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_6, 'tStartRefresh')  # time at next scr refresh
+        end_text_6.setAutoDraw(True)
+    
+    # *key_resp_end* updates
+    waitOnFlip = False
+    if key_resp_end.status == NOT_STARTED and tThisFlip >= 120-frameTolerance:
+        # keep track of start time/frame for later
+        key_resp_end.frameNStart = frameN  # exact frame index
+        key_resp_end.tStart = t  # local t and not account for scr refresh
+        key_resp_end.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(key_resp_end, 'tStartRefresh')  # time at next scr refresh
+        key_resp_end.status = STARTED
+        # keyboard checking is just starting
+        waitOnFlip = True
+        win.callOnFlip(key_resp_end.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(key_resp_end.clearEvents, eventType='keyboard')  # clear events on next screen flip
+    if key_resp_end.status == STARTED and not waitOnFlip:
+        theseKeys = key_resp_end.getKeys(keyList=['space'], waitRelease=False)
+        _key_resp_end_allKeys.extend(theseKeys)
+        if len(_key_resp_end_allKeys):
+            key_resp_end.keys = _key_resp_end_allKeys[-1].name  # just the last key pressed
+            key_resp_end.rt = _key_resp_end_allKeys[-1].rt
+            # a response ends the routine
+            continueRoutine = False
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in finalComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "final"-------
+for thisComponent in finalComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# the Routine "final" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
+
 # ------Prepare to start Routine "end_practice"-------
 continueRoutine = True
 # update component parameters for each repeat
 key_resp_end_prac.keys = []
 key_resp_end_prac.rt = []
 _key_resp_end_prac_allKeys = []
-total_accuracy_all_miss = [0] * 8
-total_accuracy_t1_only = [0] * 8
-total_accuracy_t2_only = [0] * 8
-total_accuracy_t1_miss = [0] * 8
-total_accuracy_t1_t2 = [0] * 8
+
+total_accuracy_t2_t1 = [0] * 8
+total_accuracy_t1 = [0] * 8
+
 # keep track of which components have finished
 end_practiceComponents = [end_practice_text, key_resp_end_prac]
 for thisComponent in end_practiceComponents:
@@ -1939,16 +2068,12 @@ for thisBlock in blocks:
         else:
             feedback_msg_2 = f"\nYour first answer was incorrect. The correct answer was {stim_letters[1]}."
             
-        if (key_resp_1.corr == 0) and (key_resp_2.corr == 0):
-            total_accuracy_all_miss[lag_cond-1] += 1
-        elif (key_resp_1.corr == 1) and (key_resp_2.corr == 0):
-            total_accuracy_t1_only[lag_cond-1] += 1
-        elif (key_resp_1.corr == 0) and (key_resp_2.corr == 1):
-            total_accuracy_t2_only[lag_cond-1] += 1
-        elif (key_resp_1.corr == 0):
-            total_accuracy_t1_miss[lag_cond-1] += 1
-        elif (key_resp_1.corr == 1) and (key_resp_2.corr == 1):
-            total_accuracy_t1_t2[lag_cond-1] += 1
+        if (key_resp_1.corr == 1) and (key_resp_2.corr == 1):
+            total_accuracy_t2_t1[lag_cond-1] += 1
+        
+        if (key_resp_1.corr == 1):
+            total_accuracy_t1[lag_cond-1] += 1
+        
         
         # check responses
         if key_resp_2.keys in ['', [], None]:  # No response was made
@@ -2074,42 +2199,25 @@ for thisBlock in blocks:
 # ------Prepare to start Routine "final"-------
 continueRoutine = True
 # update component parameters for each repeat
-msg_1 = 'T1 and T2 Missed %\n'
-msg_2 = 'T1 Correct %\n'
-msg_3 = 'T2 Correct %\n'
-msg_4 = 'Only T1 Missed %\n'
-msg_5 = 'Both T1 and T2 Correct %\n'
+msg_1 = 'T1 Accuracy\n\n'
+msg_2 = 'T2|T1\n\n'
 
 
 for i in range(8):
-    msg_1 += f"Lag {i+1}:   {round((total_accuracy_all_miss[i])/(trial_n*block_n), 2)*100}\n"
-    thisExp.addData(f"Lag {i+1} total_accuracy_all_miss", round((total_accuracy_all_miss[i])/(trial_n*block_n)*100, 2))
-
-for i in range(8):
-    msg_2 += f"{round((total_accuracy_t1_only[i])/(trial_n*block_n), 2)*100}\n"
-    thisExp.addData(f"Lag {i+1} total_accuracy_t1_only", round((total_accuracy_t1_only[i])/(trial_n*block_n)*100, 2))
+    msg_1 += f"Lag {i+1}:   {round((total_accuracy_t1[i])/(trial_n*block_n), 2)}\n"
+    thisExp.addData(f"Lag {i+1} total_accuracy_t2_miss_t1", round((total_accuracy_t1[i])/(trial_n*block_n), 2))
     
 for i in range(8):
-    msg_3 += f"{round((total_accuracy_t2_only[i])/(trial_n*block_n), 2)*100}\n"
-    thisExp.addData(f"Lag {i+1} total_accuracy_t2_only", round((total_accuracy_t2_only[i])/(trial_n*block_n)*100, 2))
+    msg_2 += f"{round((total_accuracy_t2_t1[i])/(trial_n*block_n), 2)/round((total_accuracy_t1[i])/(trial_n*block_n), 2)}\n"
+    thisExp.addData(f"Lag {i+1} total_accuracy_t2_t1", round((total_accuracy_t2_t1[i])/(trial_n*block_n), 2)/round((total_accuracy_t1[i])/(trial_n*block_n), 2))
 
-for i in range(8):
-    msg_4 += f"{round((total_accuracy_t1_miss[i])/(trial_n*block_n), 2)*100}\n"
-    thisExp.addData(f"Lag {i+1} total_accuracy_t1_miss", round((total_accuracy_t1_miss[i])/(trial_n*block_n)*100, 2))
-    
-for i in range(8):
-    msg_5 += f"{round((total_accuracy_t1_t2[i])/(trial_n*block_n), 2)*100}\n"
-    thisExp.addData(f"Lag {i+1} total_accuracy_t1_t2", round((total_accuracy_t1_t2[i])/(trial_n*block_n)*100, 2))
 end_text_1.setText(msg_1)
 end_text_2.setText(msg_2)
-end_text_3.setText(msg_3)
-end_text_4.setText(msg_4)
-end_text_5.setText(msg_5)
 key_resp_end.keys = []
 key_resp_end.rt = []
 _key_resp_end_allKeys = []
 # keep track of which components have finished
-finalComponents = [end_text, end_text_1, end_text_2, end_text_3, end_text_4, end_text_5, end_text_6, key_resp_end]
+finalComponents = [end_text, end_text_1, end_text_2, end_text_6, key_resp_end]
 for thisComponent in finalComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -2158,33 +2266,6 @@ while continueRoutine:
         end_text_2.tStartRefresh = tThisFlipGlobal  # on global time
         win.timeOnFlip(end_text_2, 'tStartRefresh')  # time at next scr refresh
         end_text_2.setAutoDraw(True)
-    
-    # *end_text_3* updates
-    if end_text_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        end_text_3.frameNStart = frameN  # exact frame index
-        end_text_3.tStart = t  # local t and not account for scr refresh
-        end_text_3.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(end_text_3, 'tStartRefresh')  # time at next scr refresh
-        end_text_3.setAutoDraw(True)
-    
-    # *end_text_4* updates
-    if end_text_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        end_text_4.frameNStart = frameN  # exact frame index
-        end_text_4.tStart = t  # local t and not account for scr refresh
-        end_text_4.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(end_text_4, 'tStartRefresh')  # time at next scr refresh
-        end_text_4.setAutoDraw(True)
-    
-    # *end_text_5* updates
-    if end_text_5.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
-        # keep track of start time/frame for later
-        end_text_5.frameNStart = frameN  # exact frame index
-        end_text_5.tStart = t  # local t and not account for scr refresh
-        end_text_5.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(end_text_5, 'tStartRefresh')  # time at next scr refresh
-        end_text_5.setAutoDraw(True)
     
     # *end_text_6* updates
     if end_text_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:

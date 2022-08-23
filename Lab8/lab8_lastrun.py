@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.1.4),
-    on Mon Aug 15 10:38:21 2022
+    on Mon Aug 22 20:29:21 2022
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -106,6 +106,19 @@ trial_n = 1
 block_n = 1
 block_count = 1
 
+total_accuracy_0hz = [0] * 7
+total_accuracy_2hz = [0] * 7
+total_accuracy_5hz = [0] * 7
+total_accuracy_10hz = [0] * 7
+
+trial_count_0hz = [0] * 7
+trial_count_2hz = [0] * 7
+trial_count_5hz = [0] * 7
+trial_count_10hz = [0] * 7
+
+win.mouseVisible = False
+
+
 # Initialize components for Routine "instructions"
 instructionsClock = core.Clock()
 instruct_text = visual.TextStim(win=win, name='instruct_text',
@@ -141,10 +154,10 @@ fixation_stim = visual.ShapeStim(
 trialClock = core.Clock()
 sound_1 = sound.Sound('A', secs=-1, stereo=True, hamming=True,
     name='sound_1')
-sound_1.setVolume(1.0)
+sound_1.setVolume(0.05)
 sound_2 = sound.Sound('A', secs=-1, stereo=True, hamming=True,
     name='sound_2')
-sound_2.setVolume(1.0)
+sound_2.setVolume(0.05)
 
 # Initialize components for Routine "response"
 responseClock = core.Clock()
@@ -224,10 +237,10 @@ fixation_stim = visual.ShapeStim(
 trialClock = core.Clock()
 sound_1 = sound.Sound('A', secs=-1, stereo=True, hamming=True,
     name='sound_1')
-sound_1.setVolume(1.0)
+sound_1.setVolume(0.05)
 sound_2 = sound.Sound('A', secs=-1, stereo=True, hamming=True,
     name='sound_2')
-sound_2.setVolume(1.0)
+sound_2.setVolume(0.05)
 
 # Initialize components for Routine "response"
 responseClock = core.Clock()
@@ -271,6 +284,52 @@ block_message2 = visual.TextStim(win=win, name='block_message2',
     languageStyle='LTR',
     depth=-2.0);
 key_resp_block_cont = keyboard.Keyboard()
+
+# Initialize components for Routine "final"
+finalClock = core.Clock()
+end_text = visual.TextStim(win=win, name='end_text',
+    text='Results:',
+    font='Open Sans',
+    pos=(0, .4), height=0.05, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=0.0);
+end_text_0 = visual.TextStim(win=win, name='end_text_0',
+    text='',
+    font='Open Sans',
+    pos=(-.5, 0), height=0.03, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-2.0);
+end_text_2 = visual.TextStim(win=win, name='end_text_2',
+    text='',
+    font='Open Sans',
+    pos=(-.15, 0), height=0.03, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-3.0);
+end_text_3 = visual.TextStim(win=win, name='end_text_3',
+    text='',
+    font='Open Sans',
+    pos=(.1, 0), height=0.03, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-4.0);
+end_text_4 = visual.TextStim(win=win, name='end_text_4',
+    text='',
+    font='Open Sans',
+    pos=(.4, 0), height=0.03, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-5.0);
+end_text_6 = visual.TextStim(win=win, name='end_text_6',
+    text='Record this result.\n\nPress SPACE when you are ready to end the experiment.',
+    font='Open Sans',
+    pos=(0, -.35), height=0.05, wrapWidth=None, ori=0.0, 
+    color='white', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-6.0);
+key_resp_end = keyboard.Keyboard()
 
 # Create some handy timers
 globalClock = core.Clock()  # to track the time since experiment started
@@ -599,9 +658,9 @@ for thisTrials_practice in trials_practice:
     continueRoutine = True
     # update component parameters for each repeat
     sound_1.setSound(frequency_sound_1, secs=tone_time, hamming=True)
-    sound_1.setVolume(1.0, log=False)
+    sound_1.setVolume(0.05, log=False)
     sound_2.setSound(frequency_sound_2, secs=tone_time, hamming=True)
-    sound_2.setVolume(1.0, log=False)
+    sound_2.setVolume(0.05, log=False)
     # keep track of which components have finished
     trialComponents = [sound_1, sound_2]
     for thisComponent in trialComponents:
@@ -798,7 +857,25 @@ for thisTrials_practice in trials_practice:
         feedback_msg = f"Correct! The tones were {corr_resp.upper()}."
     else:
         feedback_msg = f"Incorrect. The tones were {corr_resp.upper()}. The correct answer was {corr_ans.upper()}."
-        
+    
+    if (modulate == "no"):
+        trial_count_0hz[freq_cond-1] += 1
+        if (key_resp.corr == 1):
+            total_accuracy_0hz[freq_cond-1] += 1
+    elif (mod_hz == 2):
+        trial_count_2hz[freq_cond-1] += 1
+        if (key_resp.corr == 1):
+            total_accuracy_2hz[freq_cond-1] += 1
+    elif (mod_hz == 5):
+        trial_count_5hz[freq_cond-1] += 1
+        if (key_resp.corr == 1):
+            total_accuracy_5hz[freq_cond-1] += 1
+    elif (mod_hz == 10):
+        trial_count_10hz[freq_cond-1] += 1
+        if (key_resp.corr == 1):
+            total_accuracy_10hz[freq_cond-1] += 1
+    
+    
     
     # check responses
     if key_resp.keys in ['', [], None]:  # No response was made
@@ -997,6 +1074,16 @@ while continueRoutine:
 for thisComponent in end_practiceComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
+
+total_accuracy_0hz = [0] * 7
+total_accuracy_2hz = [0] * 7
+total_accuracy_5hz = [0] * 7
+total_accuracy_10hz = [0] * 7
+
+trial_count_0hz = [0] * 7
+trial_count_2hz = [0] * 7
+trial_count_5hz = [0] * 7
+trial_count_10hz = [0] * 7
 # the Routine "end_practice" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -1197,9 +1284,9 @@ for thisBlock in block:
         continueRoutine = True
         # update component parameters for each repeat
         sound_1.setSound(frequency_sound_1, secs=tone_time, hamming=True)
-        sound_1.setVolume(1.0, log=False)
+        sound_1.setVolume(0.05, log=False)
         sound_2.setSound(frequency_sound_2, secs=tone_time, hamming=True)
-        sound_2.setVolume(1.0, log=False)
+        sound_2.setVolume(0.05, log=False)
         # keep track of which components have finished
         trialComponents = [sound_1, sound_2]
         for thisComponent in trialComponents:
@@ -1396,7 +1483,25 @@ for thisBlock in block:
             feedback_msg = f"Correct! The tones were {corr_resp.upper()}."
         else:
             feedback_msg = f"Incorrect. The tones were {corr_resp.upper()}. The correct answer was {corr_ans.upper()}."
-            
+        
+        if (modulate == "no"):
+            trial_count_0hz[freq_cond-1] += 1
+            if (key_resp.corr == 1):
+                total_accuracy_0hz[freq_cond-1] += 1
+        elif (mod_hz == 2):
+            trial_count_2hz[freq_cond-1] += 1
+            if (key_resp.corr == 1):
+                total_accuracy_2hz[freq_cond-1] += 1
+        elif (mod_hz == 5):
+            trial_count_5hz[freq_cond-1] += 1
+            if (key_resp.corr == 1):
+                total_accuracy_5hz[freq_cond-1] += 1
+        elif (mod_hz == 10):
+            trial_count_10hz[freq_cond-1] += 1
+            if (key_resp.corr == 1):
+                total_accuracy_10hz[freq_cond-1] += 1
+        
+        
         
         # check responses
         if key_resp.keys in ['', [], None]:  # No response was made
@@ -1518,6 +1623,166 @@ for thisBlock in block:
     
 # completed block_n repeats of 'block'
 
+
+# ------Prepare to start Routine "final"-------
+continueRoutine = True
+# update component parameters for each repeat
+msg_0 = 'Base Frequency\n\n'
+msg_1 = 'Same \n\n'
+msg_2 = 'Different (2 Hz) \n\n'
+msg_3 = 'Different (5 Hz) \n\n'
+msg_4 = 'Different (10 Hz) \n\n'
+
+base_freqs = [250, 500, 1000, 2000, 4000, 6000, 8000]
+for i in range(7):
+    msg_0 += f"{base_freqs[i]} Hz:\n"
+    
+for i in range(7):
+    msg_1 += f"{round((total_accuracy_0hz[i])/(trial_count_0hz[i]), 2)}\n"
+    thisExp.addData(f"Base Frequency {base_freqs[i]} total_accuracy_0hz", round((total_accuracy_0hz[i])/(trial_count_0hz[i]), 2))
+    
+for i in range(7):
+    msg_2 += f"{round((total_accuracy_2hz[i])/(trial_count_2hz[i]), 2)}\n"
+    thisExp.addData(f"Base Frequency {base_freqs[i]} total_accuracy_2hz", round((total_accuracy_2hz[i])/(trial_count_2hz[i]), 2))
+     
+for i in range(7):
+    msg_3 += f"{round((total_accuracy_5hz[i])/(trial_count_5hz[i]), 2)}\n"
+    thisExp.addData(f"Base Frequency {base_freqs[i]} total_accuracy_5hz", round((total_accuracy_5hz[i])/(trial_count_5hz[i]), 2))
+   
+for i in range(7):
+    msg_4 += f"{round((total_accuracy_10hz[i])/(trial_count_10hz[i]), 2)}\n"
+    thisExp.addData(f"Base Frequency {base_freqs[i]} total_accuracy_10hz", round((total_accuracy_10hz[i])/(trial_count_10hz[i]), 2))
+
+end_text_0.setText(msg_0)
+end_text_2.setText(msg_2)
+end_text_3.setText(msg_3)
+end_text_4.setText(msg_4)
+key_resp_end.keys = []
+key_resp_end.rt = []
+_key_resp_end_allKeys = []
+# keep track of which components have finished
+finalComponents = [end_text, end_text_0, end_text_2, end_text_3, end_text_4, end_text_6, key_resp_end]
+for thisComponent in finalComponents:
+    thisComponent.tStart = None
+    thisComponent.tStop = None
+    thisComponent.tStartRefresh = None
+    thisComponent.tStopRefresh = None
+    if hasattr(thisComponent, 'status'):
+        thisComponent.status = NOT_STARTED
+# reset timers
+t = 0
+_timeToFirstFrame = win.getFutureFlipTime(clock="now")
+finalClock.reset(-_timeToFirstFrame)  # t0 is time of first possible flip
+frameN = -1
+
+# -------Run Routine "final"-------
+while continueRoutine:
+    # get current time
+    t = finalClock.getTime()
+    tThisFlip = win.getFutureFlipTime(clock=finalClock)
+    tThisFlipGlobal = win.getFutureFlipTime(clock=None)
+    frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+    # update/draw components on each frame
+    
+    # *end_text* updates
+    if end_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text.frameNStart = frameN  # exact frame index
+        end_text.tStart = t  # local t and not account for scr refresh
+        end_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text, 'tStartRefresh')  # time at next scr refresh
+        end_text.setAutoDraw(True)
+    
+    # *end_text_0* updates
+    if end_text_0.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_0.frameNStart = frameN  # exact frame index
+        end_text_0.tStart = t  # local t and not account for scr refresh
+        end_text_0.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_0, 'tStartRefresh')  # time at next scr refresh
+        end_text_0.setAutoDraw(True)
+    
+    # *end_text_2* updates
+    if end_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_2.frameNStart = frameN  # exact frame index
+        end_text_2.tStart = t  # local t and not account for scr refresh
+        end_text_2.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_2, 'tStartRefresh')  # time at next scr refresh
+        end_text_2.setAutoDraw(True)
+    
+    # *end_text_3* updates
+    if end_text_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_3.frameNStart = frameN  # exact frame index
+        end_text_3.tStart = t  # local t and not account for scr refresh
+        end_text_3.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_3, 'tStartRefresh')  # time at next scr refresh
+        end_text_3.setAutoDraw(True)
+    
+    # *end_text_4* updates
+    if end_text_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_4.frameNStart = frameN  # exact frame index
+        end_text_4.tStart = t  # local t and not account for scr refresh
+        end_text_4.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_4, 'tStartRefresh')  # time at next scr refresh
+        end_text_4.setAutoDraw(True)
+    
+    # *end_text_6* updates
+    if end_text_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_6.frameNStart = frameN  # exact frame index
+        end_text_6.tStart = t  # local t and not account for scr refresh
+        end_text_6.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_6, 'tStartRefresh')  # time at next scr refresh
+        end_text_6.setAutoDraw(True)
+    
+    # *key_resp_end* updates
+    waitOnFlip = False
+    if key_resp_end.status == NOT_STARTED and tThisFlip >= 120-frameTolerance:
+        # keep track of start time/frame for later
+        key_resp_end.frameNStart = frameN  # exact frame index
+        key_resp_end.tStart = t  # local t and not account for scr refresh
+        key_resp_end.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(key_resp_end, 'tStartRefresh')  # time at next scr refresh
+        key_resp_end.status = STARTED
+        # keyboard checking is just starting
+        waitOnFlip = True
+        win.callOnFlip(key_resp_end.clock.reset)  # t=0 on next screen flip
+        win.callOnFlip(key_resp_end.clearEvents, eventType='keyboard')  # clear events on next screen flip
+    if key_resp_end.status == STARTED and not waitOnFlip:
+        theseKeys = key_resp_end.getKeys(keyList=['space'], waitRelease=False)
+        _key_resp_end_allKeys.extend(theseKeys)
+        if len(_key_resp_end_allKeys):
+            key_resp_end.keys = _key_resp_end_allKeys[-1].name  # just the last key pressed
+            key_resp_end.rt = _key_resp_end_allKeys[-1].rt
+            # a response ends the routine
+            continueRoutine = False
+    
+    # check for quit (typically the Esc key)
+    if endExpNow or defaultKeyboard.getKeys(keyList=["escape"]):
+        core.quit()
+    
+    # check if all components have finished
+    if not continueRoutine:  # a component has requested a forced-end of Routine
+        break
+    continueRoutine = False  # will revert to True if at least one component still running
+    for thisComponent in finalComponents:
+        if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+            continueRoutine = True
+            break  # at least one component has not yet finished
+    
+    # refresh the screen
+    if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+        win.flip()
+
+# -------Ending Routine "final"-------
+for thisComponent in finalComponents:
+    if hasattr(thisComponent, "setAutoDraw"):
+        thisComponent.setAutoDraw(False)
+# the Routine "final" was not non-slip safe, so reset the non-slip timer
+routineTimer.reset()
 
 # Flip one final time so any remaining win.callOnFlip() 
 # and win.timeOnFlip() tasks get executed before quitting

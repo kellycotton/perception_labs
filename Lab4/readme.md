@@ -6,7 +6,7 @@
 1. Experiment setup
 	- Adjust the circle (circle_size) and dot size (dot_size)
 	- Adjust the fixation time (fix_time)
-	- Adjust the number of blocks (block_total)
+	- Adjust the number of blocks per color space (block_total) 
 	- Adjust the number of trials (trial_n) 
 	- If you change the number of conditions in the colors.csv file, change the error_rgb and error_hsv multiplier 
 
