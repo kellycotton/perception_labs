@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.1.4),
-    on Mon Aug 22 14:39:20 2022
+    on Thu Aug 25 13:50:24 2022
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -99,8 +99,9 @@ defaultKeyboard = keyboard.Keyboard(backend='iohub')
 setupClock = core.Clock()
 import random
 import scipy
+import statistics
 
-trial_n = 1
+trial_n = 5
 block_n = 1
 array_present_time = 100 # seconds
 fix_time = 0.5
@@ -108,8 +109,20 @@ fix_time = 0.5
 block_total = 3
 block_total_multiplier = 2
 
-total_accuracy_parallel = [0] * 6
-total_accuracy_serial = [0] * 6
+total_accuracy_rs_bs = [[]]*6
+total_accuracy_rs_rc = [[]]*6
+total_accuracy_bc_lc = [[]]*6
+total_accuracy_rs_rc_bs = [[]]*6
+total_accuracy_vb_hb = [[]]*6
+total_accuracy_t_l = [[]]*6
+
+for i in range(6):
+    total_accuracy_rs_bs[i] = []
+    total_accuracy_rs_rc[i] = []
+    total_accuracy_bc_lc[i] = []
+    total_accuracy_rs_rc_bs[i] = []
+    total_accuracy_vb_hb[i] = []
+    total_accuracy_t_l[i] = []
 
 win.mouseVisible = False
 
@@ -117,6 +130,8 @@ red_square_opacity = 0
 big_circle_opacity = 0
 vertical_bar_opacity = 0
 stim_t_opacity = 0
+
+trial_i = 0
 
 
 
@@ -127,7 +142,7 @@ def get_box_centers(num_box):
     # check minimum distance for all element pair distances
     while True:
         # generate random positions
-        centers = np.random.uniform(-0.9, 0.9, [(num_box+4), 2])   
+        centers = np.random.uniform(-0.92, 0.92, [(num_box+4), 2])   
         
         dist = scipy.spatial.distance.pdist(centers)
         
@@ -248,8 +263,6 @@ fix_cross = visual.ShapeStim(
 
 # Initialize components for Routine "trial"
 trialClock = core.Clock()
-
-
 big_circle = visual.ShapeStim(
     win=win, name='big_circle',
     size=[1.0, 1.0], vertices='circle',
@@ -367,8 +380,6 @@ fix_cross = visual.ShapeStim(
 
 # Initialize components for Routine "trial"
 trialClock = core.Clock()
-
-
 big_circle = visual.ShapeStim(
     win=win, name='big_circle',
     size=[1.0, 1.0], vertices='circle',
@@ -430,34 +441,62 @@ key_resp_block_cont_2 = keyboard.Keyboard()
 
 # Initialize components for Routine "final"
 finalClock = core.Clock()
-end_text1 = visual.TextStim(win=win, name='end_text1',
+end_text = visual.TextStim(win=win, name='end_text',
     text='Results:',
     font='Open Sans',
     pos=(0, .4), height=0.05, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=-1.0);
-end_text2 = visual.TextStim(win=win, name='end_text2',
+end_text_1 = visual.TextStim(win=win, name='end_text_1',
     text='',
     font='Open Sans',
-    pos=(-.25, 0), height=0.04, wrapWidth=None, ori=0.0, 
+    pos=(-.6, 0), height=0.04, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=-2.0);
-end_text3 = visual.TextStim(win=win, name='end_text3',
+end_text_2 = visual.TextStim(win=win, name='end_text_2',
     text='',
     font='Open Sans',
-    pos=(.25, 0), height=0.04, wrapWidth=None, ori=0.0, 
+    pos=(-.35, 0), height=0.04, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
     depth=-3.0);
-end_text4 = visual.TextStim(win=win, name='end_text4',
+end_text_3 = visual.TextStim(win=win, name='end_text_3',
+    text='',
+    font='Open Sans',
+    pos=(-.1, 0), height=0.04, wrapWidth=None, ori=0.0, 
+    color='black', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-4.0);
+end_text_4 = visual.TextStim(win=win, name='end_text_4',
+    text='',
+    font='Open Sans',
+    pos=(0.1, 0), height=0.04, wrapWidth=None, ori=0.0, 
+    color='black', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-5.0);
+end_text_5 = visual.TextStim(win=win, name='end_text_5',
+    text='',
+    font='Open Sans',
+    pos=(0.35, 0), height=0.04, wrapWidth=None, ori=0.0, 
+    color='black', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-6.0);
+end_text_6 = visual.TextStim(win=win, name='end_text_6',
+    text='',
+    font='Open Sans',
+    pos=(0.6, 0), height=0.04, wrapWidth=None, ori=0.0, 
+    color='black', colorSpace='rgb', opacity=None, 
+    languageStyle='LTR',
+    depth=-7.0);
+end_text_7 = visual.TextStim(win=win, name='end_text_7',
     text='Record this result.\n\nPress SPACE when you are ready to end the experiment.',
     font='Open Sans',
     pos=(0, -.35), height=0.05, wrapWidth=None, ori=0.0, 
     color='black', colorSpace='rgb', opacity=None, 
     languageStyle='LTR',
-    depth=-4.0);
+    depth=-8.0);
 key_resp_end = keyboard.Keyboard()
 
 # Create some handy timers
@@ -972,12 +1011,12 @@ for thisBlocks_practice in blocks_practice:
         for stim in stims:
             stim.setAutoDraw(True)
         big_circle.setOpacity(big_circle_opacity)
-        big_circle.setPos([locations.pop()[0]])
+        big_circle.setPos([locations.pop()])
         big_circle.setSize((0.075, 0.1))
         vertical_bar.setOpacity(vertical_bar_opacity)
-        vertical_bar.setPos([locations.pop()[0]])
+        vertical_bar.setPos([locations.pop()])
         red_square.setOpacity(red_square_opacity)
-        red_square.setPos([locations.pop()[0]])
+        red_square.setPos([locations.pop()])
         stim_t.setOpacity(stim_t_opacity)
         stim_t.setPos([locations.pop()])
         key_resp.keys = []
@@ -1146,13 +1185,25 @@ for thisBlocks_practice in blocks_practice:
         vertical_bar_opacity = 0
         stim_t_opacity = 0
         
+        if block_type == "red_square_blue_square":
+            if key_resp.corr == 1:
+                total_accuracy_rs_bs[set_size_condition].append(key_resp.rt)
+        elif block_type == "red_square_red_circle":
+            if key_resp.corr == 1:
+                total_accuracy_rs_rc[set_size_condition].append(key_resp.rt)
+        elif block_type == "big_circle_little_circle":
+            if key_resp.corr == 1:
+                total_accuracy_bc_lc[set_size_condition].append(key_resp.rt)
+        elif block_type == "red_square_red_circle_blue_square":
+            if key_resp.corr == 1:
+                total_accuracy_rs_rc_bs[set_size_condition].append(key_resp.rt)
+        elif block_type == "vertical_bar_horizontal_bar":
+            if key_resp.corr == 1:
+                total_accuracy_vb_hb[set_size_condition].append(key_resp.rt)
+        elif block_type == "t_l":
+            if key_resp.corr == 1:
+                total_accuracy_t_l[set_size_condition].append(key_resp.rt)
         
-        if search_type == "parallel":
-            if key_resp.corr == 1:
-                total_accuracy_parallel[set_size_condition] += key_resp.rt
-        else:
-            if key_resp.corr == 1:
-                total_accuracy_serial[set_size_condition] += key_resp.rt
         for stim in stims:
             stim.setAutoDraw(False)
         # check responses
@@ -1260,8 +1311,6 @@ for thisBlocks_practice in blocks_practice:
         for thisComponent in feedbackComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        total_accuracy_parallel = [0] * 6
-        total_accuracy_serial = [0] * 6
         # the Routine "feedback" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         thisExp.nextEntry()
@@ -1279,6 +1328,20 @@ continueRoutine = True
 key_resp_7.keys = []
 key_resp_7.rt = []
 _key_resp_7_allKeys = []
+total_accuracy_rs_bs = [[]]*6
+total_accuracy_rs_rc = [[]]*6
+total_accuracy_bc_lc = [[]]*6
+total_accuracy_rs_rc_bs = [[]]*6
+total_accuracy_vb_hb = [[]]*6
+total_accuracy_t_l = [[]]*6
+
+for i in range(6):
+    total_accuracy_rs_bs[i] = []
+    total_accuracy_rs_rc[i] = []
+    total_accuracy_bc_lc[i] = []
+    total_accuracy_rs_rc_bs[i] = []
+    total_accuracy_vb_hb[i] = []
+    total_accuracy_t_l[i] = []
 # keep track of which components have finished
 practice_endComponents = [end_practice_text, key_resp_7]
 for thisComponent in practice_endComponents:
@@ -1730,12 +1793,12 @@ for thisBlock in blocks:
         for stim in stims:
             stim.setAutoDraw(True)
         big_circle.setOpacity(big_circle_opacity)
-        big_circle.setPos([locations.pop()[0]])
+        big_circle.setPos([locations.pop()])
         big_circle.setSize((0.075, 0.1))
         vertical_bar.setOpacity(vertical_bar_opacity)
-        vertical_bar.setPos([locations.pop()[0]])
+        vertical_bar.setPos([locations.pop()])
         red_square.setOpacity(red_square_opacity)
-        red_square.setPos([locations.pop()[0]])
+        red_square.setPos([locations.pop()])
         stim_t.setOpacity(stim_t_opacity)
         stim_t.setPos([locations.pop()])
         key_resp.keys = []
@@ -1904,13 +1967,25 @@ for thisBlock in blocks:
         vertical_bar_opacity = 0
         stim_t_opacity = 0
         
+        if block_type == "red_square_blue_square":
+            if key_resp.corr == 1:
+                total_accuracy_rs_bs[set_size_condition].append(key_resp.rt)
+        elif block_type == "red_square_red_circle":
+            if key_resp.corr == 1:
+                total_accuracy_rs_rc[set_size_condition].append(key_resp.rt)
+        elif block_type == "big_circle_little_circle":
+            if key_resp.corr == 1:
+                total_accuracy_bc_lc[set_size_condition].append(key_resp.rt)
+        elif block_type == "red_square_red_circle_blue_square":
+            if key_resp.corr == 1:
+                total_accuracy_rs_rc_bs[set_size_condition].append(key_resp.rt)
+        elif block_type == "vertical_bar_horizontal_bar":
+            if key_resp.corr == 1:
+                total_accuracy_vb_hb[set_size_condition].append(key_resp.rt)
+        elif block_type == "t_l":
+            if key_resp.corr == 1:
+                total_accuracy_t_l[set_size_condition].append(key_resp.rt)
         
-        if search_type == "parallel":
-            if key_resp.corr == 1:
-                total_accuracy_parallel[set_size_condition] += key_resp.rt
-        else:
-            if key_resp.corr == 1:
-                total_accuracy_serial[set_size_condition] += key_resp.rt
         for stim in stims:
             stim.setAutoDraw(False)
         # check responses
@@ -2038,28 +2113,62 @@ for thisBlock in blocks:
 # ------Prepare to start Routine "final"-------
 continueRoutine = True
 # update component parameters for each repeat
-msg_1 = 'Parallel Search Results:\n\n'
-msg_2 = 'Serial Search Results:\n\n'
+msg_1 = 'Red Square/\nBlue Square:\n\n\n'
+msg_2 = 'Red Square/\nRed Circle:\n\n\n'
+msg_3 = 'Big Circle/\nLittle Circle:\n\n\n'
+msg_4 = 'Red Square/\nRed Circle/\nBlue Square:\n\n'
+msg_5 = 'Vertical Bar/\nHorizontal Bar/\nRed Bar:\n\n'
+msg_6 = 'T/\nL:\n\n\n'
+
 
 set_sizes = [1,2,4,8,16,32]
+means_rs_bs = [0]*6
+means_rs_rc = [0]*6
+means_bc_lc = [0]*6
+means_rs_rc_bs = [0]*6
+means_vb_hb = [0]*6
+means_t_l = [0]*6
 
 for i in range(6):
-    msg_1 += f"Set size {set_sizes[i]}: {round(total_accuracy_parallel[i]/(trial_n*2*block_total*block_total_multiplier), 2) * 100} ms\n"
-    thisExp.addData(f"parallel set size {set_sizes[i]} mean", round(total_accuracy_parallel[i]/(trial_n*2*block_total*block_total_multiplier), 2))
+    means_rs_bs[i] = statistics.mean(total_accuracy_rs_bs[i])
+results = np.polyfit(set_sizes, means_rs_bs, 1)[0]
+msg_1 += f"{round(results*1000, 2)}"
 
 for i in range(6):
-    msg_2 += f"{set_sizes[i]}: {round(total_accuracy_serial[i]/(trial_n*2*block_total*block_total_multiplier), 2) * 100} ms\n"
-    thisExp.addData(f"serial set size {set_sizes[i]} mean", round(total_accuracy_serial[i]/(trial_n*2*block_total*block_total_multiplier), 2))
+    means_rs_rc[i] = statistics.mean(total_accuracy_rs_rc[i])
+results = np.polyfit(set_sizes, means_rs_rc, 1)[0]
+msg_2 += f"{round(results*1000, 2)}"
 
-    
-    
-end_text2.setText(msg_1)
-end_text3.setText(msg_2)
+for i in range(6):
+    means_bc_lc[i] = statistics.mean(total_accuracy_bc_lc[i])
+results = np.polyfit(set_sizes, means_bc_lc, 1)[0]
+msg_3 += f"{round(results*1000, 2)}"
+
+for i in range(6):
+    means_rs_rc_bs[i] = statistics.mean(total_accuracy_rs_rc_bs[i])
+results = np.polyfit(set_sizes, means_rs_rc_bs, 1)[0]
+msg_4 += f"{round(results*1000, 2)}"
+
+for i in range(6):
+    means_vb_hb[i] = statistics.mean(total_accuracy_vb_hb[i])
+results = np.polyfit(set_sizes, means_vb_hb, 1)[0]
+msg_5 += f"{round(results*1000, 2)}"
+
+for i in range(6):
+    means_t_l[i] = statistics.mean(total_accuracy_t_l[i])
+results = np.polyfit(set_sizes, means_t_l, 1)[0]
+msg_6 += f"{round(results*1000, 2)}"
+end_text_1.setText(msg_1)
+end_text_2.setText(msg_2)
+end_text_3.setText(msg_3)
+end_text_4.setText(msg_4)
+end_text_5.setText(msg_5)
+end_text_6.setText(msg_6)
 key_resp_end.keys = []
 key_resp_end.rt = []
 _key_resp_end_allKeys = []
 # keep track of which components have finished
-finalComponents = [end_text1, end_text2, end_text3, end_text4, key_resp_end]
+finalComponents = [end_text, end_text_1, end_text_2, end_text_3, end_text_4, end_text_5, end_text_6, end_text_7, key_resp_end]
 for thisComponent in finalComponents:
     thisComponent.tStart = None
     thisComponent.tStop = None
@@ -2082,41 +2191,77 @@ while continueRoutine:
     frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
     # update/draw components on each frame
     
-    # *end_text1* updates
-    if end_text1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    # *end_text* updates
+    if end_text.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
         # keep track of start time/frame for later
-        end_text1.frameNStart = frameN  # exact frame index
-        end_text1.tStart = t  # local t and not account for scr refresh
-        end_text1.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(end_text1, 'tStartRefresh')  # time at next scr refresh
-        end_text1.setAutoDraw(True)
+        end_text.frameNStart = frameN  # exact frame index
+        end_text.tStart = t  # local t and not account for scr refresh
+        end_text.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text, 'tStartRefresh')  # time at next scr refresh
+        end_text.setAutoDraw(True)
     
-    # *end_text2* updates
-    if end_text2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    # *end_text_1* updates
+    if end_text_1.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
         # keep track of start time/frame for later
-        end_text2.frameNStart = frameN  # exact frame index
-        end_text2.tStart = t  # local t and not account for scr refresh
-        end_text2.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(end_text2, 'tStartRefresh')  # time at next scr refresh
-        end_text2.setAutoDraw(True)
+        end_text_1.frameNStart = frameN  # exact frame index
+        end_text_1.tStart = t  # local t and not account for scr refresh
+        end_text_1.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_1, 'tStartRefresh')  # time at next scr refresh
+        end_text_1.setAutoDraw(True)
     
-    # *end_text3* updates
-    if end_text3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    # *end_text_2* updates
+    if end_text_2.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
         # keep track of start time/frame for later
-        end_text3.frameNStart = frameN  # exact frame index
-        end_text3.tStart = t  # local t and not account for scr refresh
-        end_text3.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(end_text3, 'tStartRefresh')  # time at next scr refresh
-        end_text3.setAutoDraw(True)
+        end_text_2.frameNStart = frameN  # exact frame index
+        end_text_2.tStart = t  # local t and not account for scr refresh
+        end_text_2.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_2, 'tStartRefresh')  # time at next scr refresh
+        end_text_2.setAutoDraw(True)
     
-    # *end_text4* updates
-    if end_text4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+    # *end_text_3* updates
+    if end_text_3.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
         # keep track of start time/frame for later
-        end_text4.frameNStart = frameN  # exact frame index
-        end_text4.tStart = t  # local t and not account for scr refresh
-        end_text4.tStartRefresh = tThisFlipGlobal  # on global time
-        win.timeOnFlip(end_text4, 'tStartRefresh')  # time at next scr refresh
-        end_text4.setAutoDraw(True)
+        end_text_3.frameNStart = frameN  # exact frame index
+        end_text_3.tStart = t  # local t and not account for scr refresh
+        end_text_3.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_3, 'tStartRefresh')  # time at next scr refresh
+        end_text_3.setAutoDraw(True)
+    
+    # *end_text_4* updates
+    if end_text_4.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_4.frameNStart = frameN  # exact frame index
+        end_text_4.tStart = t  # local t and not account for scr refresh
+        end_text_4.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_4, 'tStartRefresh')  # time at next scr refresh
+        end_text_4.setAutoDraw(True)
+    
+    # *end_text_5* updates
+    if end_text_5.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_5.frameNStart = frameN  # exact frame index
+        end_text_5.tStart = t  # local t and not account for scr refresh
+        end_text_5.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_5, 'tStartRefresh')  # time at next scr refresh
+        end_text_5.setAutoDraw(True)
+    
+    # *end_text_6* updates
+    if end_text_6.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_6.frameNStart = frameN  # exact frame index
+        end_text_6.tStart = t  # local t and not account for scr refresh
+        end_text_6.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_6, 'tStartRefresh')  # time at next scr refresh
+        end_text_6.setAutoDraw(True)
+    
+    # *end_text_7* updates
+    if end_text_7.status == NOT_STARTED and tThisFlip >= 0.0-frameTolerance:
+        # keep track of start time/frame for later
+        end_text_7.frameNStart = frameN  # exact frame index
+        end_text_7.tStart = t  # local t and not account for scr refresh
+        end_text_7.tStartRefresh = tThisFlipGlobal  # on global time
+        win.timeOnFlip(end_text_7, 'tStartRefresh')  # time at next scr refresh
+        end_text_7.setAutoDraw(True)
     
     # *key_resp_end* updates
     waitOnFlip = False

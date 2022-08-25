@@ -67,8 +67,8 @@
       <CodeComponent name="code_setup">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="import random&amp;#10;&amp;#10;tone_time = .3&amp;#10;fix_time = .5&amp;#10;&amp;#10;trial_n = 1&amp;#10;block_n = 1&amp;#10;block_count = 1&amp;#10;&amp;#10;sound_tones = {1: &quot;C&quot;, &amp;#10;               2: &quot;D&quot;,&amp;#10;               3: &quot;E&quot;,&amp;#10;               4: &quot;F&quot;,&amp;#10;               5: &quot;G&quot;,&amp;#10;               6: &quot;A&quot;,&amp;#10;               7: &quot;B&quot;}&amp;#10;               &amp;#10;win.mouseVisible = False&amp;#10;&amp;#10;total_accuracy_same = 0&amp;#10;total_accuracy_contour = 0&amp;#10;total_accuracy_interval = 0&amp;#10;trial_count_same = 0&amp;#10;trial_count_contour = 0&amp;#10;trial_count_interval = 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="import * as random from 'random';&amp;#10;var block_count, block_n, fix_time, sound_tones, tone_time, total_accuracy_contour, total_accuracy_interval, total_accuracy_same, trial_count_contour, trial_count_interval, trial_count_same, trial_n;&amp;#10;tone_time = 0.3;&amp;#10;fix_time = 0.5;&amp;#10;trial_n = 1;&amp;#10;block_n = 1;&amp;#10;block_count = 1;&amp;#10;sound_tones = {[1]: &quot;C&quot;, [2]: &quot;D&quot;, [3]: &quot;E&quot;, [4]: &quot;F&quot;, [5]: &quot;G&quot;, [6]: &quot;A&quot;, [7]: &quot;B&quot;};&amp;#10;psychoJS.window.mouseVisible = false;&amp;#10;total_accuracy_same = 0;&amp;#10;total_accuracy_contour = 0;&amp;#10;total_accuracy_interval = 0;&amp;#10;trial_count_same = 0;&amp;#10;trial_count_contour = 0;&amp;#10;trial_count_interval = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="import random&amp;#10;&amp;#10;tone_time = .3&amp;#10;fix_time = .5&amp;#10;&amp;#10;trial_n = 6&amp;#10;block_n = 5&amp;#10;block_count = 1&amp;#10;&amp;#10;sound_tones = {1: &quot;C&quot;, &amp;#10;               2: &quot;D&quot;,&amp;#10;               3: &quot;E&quot;,&amp;#10;               4: &quot;F&quot;,&amp;#10;               5: &quot;G&quot;,&amp;#10;               6: &quot;A&quot;,&amp;#10;               7: &quot;B&quot;}&amp;#10;               &amp;#10;win.mouseVisible = False&amp;#10;&amp;#10;total_accuracy_same = 0&amp;#10;total_accuracy_contour = 0&amp;#10;total_accuracy_interval = 0&amp;#10;trial_count_same = 0&amp;#10;trial_count_contour = 0&amp;#10;trial_count_interval = 0" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="import * as random from 'random';&amp;#10;var block_count, block_n, fix_time, sound_tones, tone_time, total_accuracy_contour, total_accuracy_interval, total_accuracy_same, trial_count_contour, trial_count_interval, trial_count_same, trial_n;&amp;#10;tone_time = 0.3;&amp;#10;fix_time = 0.5;&amp;#10;trial_n = 6;&amp;#10;block_n = 5;&amp;#10;block_count = 1;&amp;#10;sound_tones = {[1]: &quot;C&quot;, [2]: &quot;D&quot;, [3]: &quot;E&quot;, [4]: &quot;F&quot;, [5]: &quot;G&quot;, [6]: &quot;A&quot;, [7]: &quot;B&quot;};&amp;#10;psychoJS.window.mouseVisible = false;&amp;#10;total_accuracy_same = 0;&amp;#10;total_accuracy_contour = 0;&amp;#10;total_accuracy_interval = 0;&amp;#10;trial_count_same = 0;&amp;#10;trial_count_contour = 0;&amp;#10;trial_count_interval = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
@@ -277,7 +277,7 @@
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="cross" valType="str" updates="None" name="shape"/>
         <Param val="(0.05, 0.05)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
@@ -829,7 +829,7 @@
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
@@ -966,6 +966,17 @@
     <Routine name="feedback"/>
     <LoopTerminator name="trials_practice"/>
     <Routine name="end_practice"/>
+    <LoopInitiator loopType="TrialHandler" name="blocks">
+      <Param name="Selected rows" updates="None" val="" valType="str"/>
+      <Param name="conditions" updates="None" val="None" valType="str"/>
+      <Param name="conditionsFile" updates="None" val="" valType="file"/>
+      <Param name="endPoints" updates="None" val="[0, 1]" valType="num"/>
+      <Param name="isTrials" updates="None" val="True" valType="bool"/>
+      <Param name="loopType" updates="None" val="random" valType="str"/>
+      <Param name="nReps" updates="None" val="block_n" valType="num"/>
+      <Param name="name" updates="None" val="blocks" valType="code"/>
+      <Param name="random seed" updates="None" val="" valType="code"/>
+    </LoopInitiator>
     <LoopInitiator loopType="TrialHandler" name="trials">
       <Param name="Selected rows" updates="None" val="" valType="str"/>
       <Param name="conditions" updates="None" val="[OrderedDict([('change', 'yes'), ('change_condition', 'contour')]), OrderedDict([('change', 'yes'), ('change_condition', 'interval')]), OrderedDict([('change', 'no'), ('change_condition', 'no')])]" valType="str"/>
@@ -984,6 +995,7 @@
     <Routine name="response"/>
     <LoopTerminator name="trials"/>
     <Routine name="end_block"/>
+    <LoopTerminator name="blocks"/>
     <Routine name="final"/>
   </Flow>
 </PsychoPy2experiment>

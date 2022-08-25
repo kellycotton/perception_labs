@@ -67,8 +67,8 @@
       <CodeComponent name="code_setup">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="import random&amp;#10;import scipy&amp;#10;&amp;#10;trial_n = 1&amp;#10;block_n = 1&amp;#10;array_present_time = 100 # seconds&amp;#10;fix_time = 0.5&amp;#10;&amp;#10;block_total = 3&amp;#10;block_total_multiplier = 2&amp;#10;&amp;#10;total_accuracy_parallel = [0] * 6&amp;#10;total_accuracy_serial = [0] * 6&amp;#10;&amp;#10;win.mouseVisible = False&amp;#10;&amp;#10;red_square_opacity = 0&amp;#10;big_circle_opacity = 0&amp;#10;vertical_bar_opacity = 0&amp;#10;stim_t_opacity = 0&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="import * as random from 'random';&amp;#10;import * as scipy from 'scipy';&amp;#10;var array_present_time, big_circle_opacity, block_n, block_total, block_total_multiplier, fix_time, red_square_opacity, stim_t_opacity, total_accuracy_parallel, total_accuracy_serial, trial_n, vertical_bar_opacity;&amp;#10;trial_n = 1;&amp;#10;block_n = 1;&amp;#10;array_present_time = 100;&amp;#10;fix_time = 0.5;&amp;#10;block_total = 3;&amp;#10;block_total_multiplier = 2;&amp;#10;total_accuracy_parallel = ([0] * 6);&amp;#10;total_accuracy_serial = ([0] * 6);&amp;#10;psychoJS.window.mouseVisible = false;&amp;#10;red_square_opacity = 0;&amp;#10;big_circle_opacity = 0;&amp;#10;vertical_bar_opacity = 0;&amp;#10;stim_t_opacity = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="import random&amp;#10;import scipy&amp;#10;import statistics&amp;#10;&amp;#10;trial_n = 5&amp;#10;block_n = 1&amp;#10;array_present_time = 100 # seconds&amp;#10;fix_time = 0.5&amp;#10;&amp;#10;block_total = 3&amp;#10;block_total_multiplier = 2&amp;#10;&amp;#10;total_accuracy_rs_bs = [[]]*6&amp;#10;total_accuracy_rs_rc = [[]]*6&amp;#10;total_accuracy_bc_lc = [[]]*6&amp;#10;total_accuracy_rs_rc_bs = [[]]*6&amp;#10;total_accuracy_vb_hb = [[]]*6&amp;#10;total_accuracy_t_l = [[]]*6&amp;#10;&amp;#10;for i in range(6):&amp;#10;    total_accuracy_rs_bs[i] = []&amp;#10;    total_accuracy_rs_rc[i] = []&amp;#10;    total_accuracy_bc_lc[i] = []&amp;#10;    total_accuracy_rs_rc_bs[i] = []&amp;#10;    total_accuracy_vb_hb[i] = []&amp;#10;    total_accuracy_t_l[i] = []&amp;#10;&amp;#10;win.mouseVisible = False&amp;#10;&amp;#10;red_square_opacity = 0&amp;#10;big_circle_opacity = 0&amp;#10;vertical_bar_opacity = 0&amp;#10;stim_t_opacity = 0&amp;#10;&amp;#10;trial_i = 0&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="import * as random from 'random';&amp;#10;import * as scipy from 'scipy';&amp;#10;import * as statistics from 'statistics';&amp;#10;var array_present_time, big_circle_opacity, block_n, block_total, block_total_multiplier, fix_time, red_square_opacity, stim_t_opacity, total_accuracy_bc_lc, total_accuracy_rs_bs, total_accuracy_rs_rc, total_accuracy_rs_rc_bs, total_accuracy_t_l, total_accuracy_vb_hb, trial_i, trial_n, vertical_bar_opacity;&amp;#10;trial_n = 5;&amp;#10;block_n = 1;&amp;#10;array_present_time = 100;&amp;#10;fix_time = 0.5;&amp;#10;block_total = 3;&amp;#10;block_total_multiplier = 2;&amp;#10;total_accuracy_rs_bs = ([[]] * 6);&amp;#10;total_accuracy_rs_rc = ([[]] * 6);&amp;#10;total_accuracy_bc_lc = ([[]] * 6);&amp;#10;total_accuracy_rs_rc_bs = ([[]] * 6);&amp;#10;total_accuracy_vb_hb = ([[]] * 6);&amp;#10;total_accuracy_t_l = ([[]] * 6);&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    total_accuracy_rs_bs[i] = [];&amp;#10;    total_accuracy_rs_rc[i] = [];&amp;#10;    total_accuracy_bc_lc[i] = [];&amp;#10;    total_accuracy_rs_rc_bs[i] = [];&amp;#10;    total_accuracy_vb_hb[i] = [];&amp;#10;    total_accuracy_t_l[i] = [];&amp;#10;}&amp;#10;psychoJS.window.mouseVisible = false;&amp;#10;red_square_opacity = 0;&amp;#10;big_circle_opacity = 0;&amp;#10;vertical_bar_opacity = 0;&amp;#10;stim_t_opacity = 0;&amp;#10;trial_i = 0;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
@@ -84,8 +84,8 @@
       <CodeComponent name="code_stim_functions">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="&amp;#10;def get_box_centers(num_box):&amp;#10;    #calculate minimum safe distance&amp;#10;    min_dist = 1.0 / (num_box+4) + .1&amp;#10;       &amp;#10;    # check minimum distance for all element pair distances&amp;#10;    while True:&amp;#10;        # generate random positions&amp;#10;        centers = np.random.uniform(-0.9, 0.9, [(num_box+4), 2])   &amp;#10;        &amp;#10;        dist = scipy.spatial.distance.pdist(centers)&amp;#10;        &amp;#10;        if dist.min() &gt; min_dist:&amp;#10;            break&amp;#10;        &amp;#10;    centers_list = list(centers)&amp;#10;            &amp;#10;    return centers_list&amp;#10;&amp;#10;def generate_blue_square(position):&amp;#10;    stim = visual.Rect(&amp;#10;        win=win, name='blue_square',&amp;#10;        width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],&amp;#10;        ori=0.0, pos=position, anchor='center',&amp;#10;        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',&amp;#10;        opacity=1.0, depth=-3.0, interpolate=True)&amp;#10;    return stim&amp;#10;&amp;#10;def generate_red_circle(position):&amp;#10;    stim = visual.ShapeStim(&amp;#10;        win=win, name='red_circle',&amp;#10;        size=(0.0375, 0.05), vertices='circle',&amp;#10;        ori=0.0, pos=position, anchor='center',&amp;#10;        lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',&amp;#10;        opacity=1.0, depth=-4.0, interpolate=True)&amp;#10;    return stim&amp;#10;&amp;#10;def generate_little_circle(position):&amp;#10;    stim = visual.ShapeStim(&amp;#10;        win=win, name='red_circle',&amp;#10;        size=(0.0375, 0.05), vertices='circle',&amp;#10;        ori=0.0, pos=position, anchor='center',&amp;#10;        lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',&amp;#10;        opacity=1.0, depth=-4.0, interpolate=True)&amp;#10;    return stim&amp;#10;&amp;#10;def generate_horizontal_bar(position):&amp;#10;    stim = visual.Rect(&amp;#10;            win=win, name='horizontal_bar',&amp;#10;            width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],&amp;#10;            ori=90.0, pos=position, anchor='center',&amp;#10;            lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',&amp;#10;            opacity=1.0, depth=-7.0, interpolate=True)&amp;#10;    return stim&amp;#10;&amp;#10;def generate_red_bar(position):&amp;#10;    stim = visual.Rect(&amp;#10;            win=win, name='red_bar',&amp;#10;            width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],&amp;#10;            ori=0.0, pos=position, anchor='center',&amp;#10;            lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',&amp;#10;            opacity=1.0, depth=-9.0, interpolate=True)&amp;#10;    return stim" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="&amp;#10;        // add-on: list(s: string): string[]&amp;#10;        function list(s) {&amp;#10;            // if s is a string, we return a list of its characters&amp;#10;            if (typeof s === 'string')&amp;#10;                return s.split('');&amp;#10;            else&amp;#10;                // otherwise we return s:&amp;#10;                return s;&amp;#10;        }&amp;#10;&amp;#10;        function get_box_centers(num_box) {&amp;#10;    var centers, centers_list, dist, min_dist;&amp;#10;    min_dist = ((1.0 / (num_box + 4)) + 0.1);&amp;#10;    while (true) {&amp;#10;        centers = np.random.uniform((- 0.9), 0.9, [(num_box + 4), 2]);&amp;#10;        dist = scipy.spatial.distance.pdist(centers);&amp;#10;        if ((dist.min() &gt; min_dist)) {&amp;#10;            break;&amp;#10;        }&amp;#10;    }&amp;#10;    centers_list = list(centers);&amp;#10;    return centers_list;&amp;#10;}&amp;#10;function generate_blue_square(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.Rect({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;blue_square&quot;, &quot;width&quot;: [0.0375, 0.05][0], &quot;height&quot;: [0.0375, 0.05][1], &quot;ori&quot;: 0.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;blue&quot;, &quot;fillColor&quot;: &quot;blue&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 3.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;function generate_red_circle(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.ShapeStim({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;red_circle&quot;, &quot;size&quot;: [0.0375, 0.05], &quot;vertices&quot;: &quot;circle&quot;, &quot;ori&quot;: 0.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;red&quot;, &quot;fillColor&quot;: &quot;red&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 4.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;function generate_little_circle(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.ShapeStim({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;red_circle&quot;, &quot;size&quot;: [0.0375, 0.05], &quot;vertices&quot;: &quot;circle&quot;, &quot;ori&quot;: 0.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;red&quot;, &quot;fillColor&quot;: &quot;red&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 4.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;function generate_horizontal_bar(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.Rect({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;horizontal_bar&quot;, &quot;width&quot;: [0.02, 0.1][0], &quot;height&quot;: [0.02, 0.1][1], &quot;ori&quot;: 90.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;blue&quot;, &quot;fillColor&quot;: &quot;blue&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 7.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;function generate_red_bar(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.Rect({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;red_bar&quot;, &quot;width&quot;: [0.02, 0.1][0], &quot;height&quot;: [0.02, 0.1][1], &quot;ori&quot;: 0.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;red&quot;, &quot;fillColor&quot;: &quot;red&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 9.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="&amp;#10;def get_box_centers(num_box):&amp;#10;    #calculate minimum safe distance&amp;#10;    min_dist = 1.0 / (num_box+4) + .1&amp;#10;       &amp;#10;    # check minimum distance for all element pair distances&amp;#10;    while True:&amp;#10;        # generate random positions&amp;#10;        centers = np.random.uniform(-0.92, 0.92, [(num_box+4), 2])   &amp;#10;        &amp;#10;        dist = scipy.spatial.distance.pdist(centers)&amp;#10;        &amp;#10;        if dist.min() &gt; min_dist:&amp;#10;            break&amp;#10;        &amp;#10;    centers_list = list(centers)&amp;#10;            &amp;#10;    return centers_list&amp;#10;&amp;#10;def generate_blue_square(position):&amp;#10;    stim = visual.Rect(&amp;#10;        win=win, name='blue_square',&amp;#10;        width=(0.0375, 0.05)[0], height=(0.0375, 0.05)[1],&amp;#10;        ori=0.0, pos=position, anchor='center',&amp;#10;        lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',&amp;#10;        opacity=1.0, depth=-3.0, interpolate=True)&amp;#10;    return stim&amp;#10;&amp;#10;def generate_red_circle(position):&amp;#10;    stim = visual.ShapeStim(&amp;#10;        win=win, name='red_circle',&amp;#10;        size=(0.0375, 0.05), vertices='circle',&amp;#10;        ori=0.0, pos=position, anchor='center',&amp;#10;        lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',&amp;#10;        opacity=1.0, depth=-4.0, interpolate=True)&amp;#10;    return stim&amp;#10;&amp;#10;def generate_little_circle(position):&amp;#10;    stim = visual.ShapeStim(&amp;#10;        win=win, name='red_circle',&amp;#10;        size=(0.0375, 0.05), vertices='circle',&amp;#10;        ori=0.0, pos=position, anchor='center',&amp;#10;        lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',&amp;#10;        opacity=1.0, depth=-4.0, interpolate=True)&amp;#10;    return stim&amp;#10;&amp;#10;def generate_horizontal_bar(position):&amp;#10;    stim = visual.Rect(&amp;#10;            win=win, name='horizontal_bar',&amp;#10;            width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],&amp;#10;            ori=90.0, pos=position, anchor='center',&amp;#10;            lineWidth=1.0,     colorSpace='rgb',  lineColor='blue', fillColor='blue',&amp;#10;            opacity=1.0, depth=-7.0, interpolate=True)&amp;#10;    return stim&amp;#10;&amp;#10;def generate_red_bar(position):&amp;#10;    stim = visual.Rect(&amp;#10;            win=win, name='red_bar',&amp;#10;            width=(0.02, 0.1)[0], height=(0.02, 0.1)[1],&amp;#10;            ori=0.0, pos=position, anchor='center',&amp;#10;            lineWidth=1.0,     colorSpace='rgb',  lineColor='red', fillColor='red',&amp;#10;            opacity=1.0, depth=-9.0, interpolate=True)&amp;#10;    return stim" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="&amp;#10;        // add-on: list(s: string): string[]&amp;#10;        function list(s) {&amp;#10;            // if s is a string, we return a list of its characters&amp;#10;            if (typeof s === 'string')&amp;#10;                return s.split('');&amp;#10;            else&amp;#10;                // otherwise we return s:&amp;#10;                return s;&amp;#10;        }&amp;#10;&amp;#10;        function get_box_centers(num_box) {&amp;#10;    var centers, centers_list, dist, min_dist;&amp;#10;    min_dist = ((1.0 / (num_box + 4)) + 0.1);&amp;#10;    while (true) {&amp;#10;        centers = np.random.uniform((- 0.92), 0.92, [(num_box + 4), 2]);&amp;#10;        dist = scipy.spatial.distance.pdist(centers);&amp;#10;        if ((dist.min() &gt; min_dist)) {&amp;#10;            break;&amp;#10;        }&amp;#10;    }&amp;#10;    centers_list = list(centers);&amp;#10;    return centers_list;&amp;#10;}&amp;#10;function generate_blue_square(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.Rect({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;blue_square&quot;, &quot;width&quot;: [0.0375, 0.05][0], &quot;height&quot;: [0.0375, 0.05][1], &quot;ori&quot;: 0.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;blue&quot;, &quot;fillColor&quot;: &quot;blue&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 3.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;function generate_red_circle(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.ShapeStim({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;red_circle&quot;, &quot;size&quot;: [0.0375, 0.05], &quot;vertices&quot;: &quot;circle&quot;, &quot;ori&quot;: 0.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;red&quot;, &quot;fillColor&quot;: &quot;red&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 4.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;function generate_little_circle(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.ShapeStim({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;red_circle&quot;, &quot;size&quot;: [0.0375, 0.05], &quot;vertices&quot;: &quot;circle&quot;, &quot;ori&quot;: 0.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;red&quot;, &quot;fillColor&quot;: &quot;red&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 4.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;function generate_horizontal_bar(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.Rect({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;horizontal_bar&quot;, &quot;width&quot;: [0.02, 0.1][0], &quot;height&quot;: [0.02, 0.1][1], &quot;ori&quot;: 90.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;blue&quot;, &quot;fillColor&quot;: &quot;blue&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 7.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;function generate_red_bar(position) {&amp;#10;    var stim;&amp;#10;    stim = new visual.Rect({&quot;win&quot;: psychoJS.window, &quot;name&quot;: &quot;red_bar&quot;, &quot;width&quot;: [0.02, 0.1][0], &quot;height&quot;: [0.02, 0.1][1], &quot;ori&quot;: 0.0, &quot;pos&quot;: position, &quot;anchor&quot;: &quot;center&quot;, &quot;lineWidth&quot;: 1.0, &quot;colorSpace&quot;: &quot;rgb&quot;, &quot;lineColor&quot;: &quot;red&quot;, &quot;fillColor&quot;: &quot;red&quot;, &quot;opacity&quot;: 1.0, &quot;depth&quot;: (- 9.0), &quot;interpolate&quot;: true});&amp;#10;    return stim;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
@@ -143,6 +143,23 @@
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
+      <CodeComponent name="code_4">
+        <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="total_accuracy_rs_bs = ([[]] * 6);&amp;#10;total_accuracy_rs_rc = ([[]] * 6);&amp;#10;total_accuracy_bc_lc = ([[]] * 6);&amp;#10;total_accuracy_rs_rc_bs = ([[]] * 6);&amp;#10;total_accuracy_vb_hb = ([[]] * 6);&amp;#10;total_accuracy_t_l = ([[]] * 6);&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    total_accuracy_rs_bs[i] = [];&amp;#10;    total_accuracy_rs_rc[i] = [];&amp;#10;    total_accuracy_bc_lc[i] = [];&amp;#10;    total_accuracy_rs_rc_bs[i] = [];&amp;#10;    total_accuracy_vb_hb[i] = [];&amp;#10;    total_accuracy_t_l[i] = [];&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="total_accuracy_rs_bs = [[]]*6&amp;#10;total_accuracy_rs_rc = [[]]*6&amp;#10;total_accuracy_bc_lc = [[]]*6&amp;#10;total_accuracy_rs_rc_bs = [[]]*6&amp;#10;total_accuracy_vb_hb = [[]]*6&amp;#10;total_accuracy_t_l = [[]]*6&amp;#10;&amp;#10;for i in range(6):&amp;#10;    total_accuracy_rs_bs[i] = []&amp;#10;    total_accuracy_rs_rc[i] = []&amp;#10;    total_accuracy_bc_lc[i] = []&amp;#10;    total_accuracy_rs_rc_bs[i] = []&amp;#10;    total_accuracy_vb_hb[i] = []&amp;#10;    total_accuracy_t_l[i] = []" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="code_4" valType="code" updates="None" name="name"/>
+      </CodeComponent>
     </Routine>
     <Routine name="final">
       <CodeComponent name="code_end">
@@ -150,8 +167,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="msg_1 = &quot;Parallel Search Results:\n\n&quot;;&amp;#10;msg_2 = &quot;Serial Search Results:\n\n&quot;;&amp;#10;set_sizes = [1, 2, 4, 8, 16, 32];&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    msg_1 += `Set size ${set_sizes[i]}: ${(round((total_accuracy_parallel[i] / (((trial_n * 2) * block_total) * block_total_multiplier)), 2) * 100)} ms&amp;#10;`;&amp;#10;    psychoJS.experiment.addData(`parallel set size ${set_sizes[i]} mean`, Math.round((total_accuracy_parallel[i] / (((trial_n * 2) * block_total) * block_total_multiplier)), 2));&amp;#10;}&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    msg_2 += `${set_sizes[i]}: ${(round((total_accuracy_serial[i] / (((trial_n * 2) * block_total) * block_total_multiplier)), 2) * 100)} ms&amp;#10;`;&amp;#10;    psychoJS.experiment.addData(`serial set size ${set_sizes[i]} mean`, Math.round((total_accuracy_serial[i] / (((trial_n * 2) * block_total) * block_total_multiplier)), 2));&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="msg_1 = 'Parallel Search Results:\n\n'&amp;#10;msg_2 = 'Serial Search Results:\n\n'&amp;#10;&amp;#10;set_sizes = [1,2,4,8,16,32]&amp;#10;&amp;#10;for i in range(6):&amp;#10;    msg_1 += f&quot;Set size {set_sizes[i]}: {round(total_accuracy_parallel[i]/(trial_n*2*block_total*block_total_multiplier), 2) * 100} ms\n&quot;&amp;#10;    thisExp.addData(f&quot;parallel set size {set_sizes[i]} mean&quot;, round(total_accuracy_parallel[i]/(trial_n*2*block_total*block_total_multiplier), 2))&amp;#10;&amp;#10;for i in range(6):&amp;#10;    msg_2 += f&quot;{set_sizes[i]}: {round(total_accuracy_serial[i]/(trial_n*2*block_total*block_total_multiplier), 2) * 100} ms\n&quot;&amp;#10;    thisExp.addData(f&quot;serial set size {set_sizes[i]} mean&quot;, round(total_accuracy_serial[i]/(trial_n*2*block_total*block_total_multiplier), 2))&amp;#10;&amp;#10;    &amp;#10;    " valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="msg_1 = &quot;Red Square/\nBlue Square:\n\n\n&quot;;&amp;#10;msg_2 = &quot;Red Square/\nRed Circle:\n\n\n&quot;;&amp;#10;msg_3 = &quot;Big Circle/\nLittle Circle:\n\n\n&quot;;&amp;#10;msg_4 = &quot;Red Square/\nRed Circle/\nBlue Square:\n\n&quot;;&amp;#10;msg_5 = &quot;Vertical Bar/\nHorizontal Bar/\nRed Bar:\n\n&quot;;&amp;#10;msg_6 = &quot;T/\nL:\n\n\n&quot;;&amp;#10;set_sizes = [1, 2, 4, 8, 16, 32];&amp;#10;means_rs_bs = ([0] * 6);&amp;#10;means_rs_rc = ([0] * 6);&amp;#10;means_bc_lc = ([0] * 6);&amp;#10;means_rs_rc_bs = ([0] * 6);&amp;#10;means_vb_hb = ([0] * 6);&amp;#10;means_t_l = ([0] * 6);&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    means_rs_bs[i] = statistics.mean(total_accuracy_rs_bs[i]);&amp;#10;}&amp;#10;results = np.polyfit(set_sizes, means_rs_bs, 1)[0];&amp;#10;msg_1 += `${round((results * 1000), 2)}`;&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    means_rs_rc[i] = statistics.mean(total_accuracy_rs_rc[i]);&amp;#10;}&amp;#10;results = np.polyfit(set_sizes, means_rs_rc, 1)[0];&amp;#10;msg_2 += `${round((results * 1000), 2)}`;&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    means_bc_lc[i] = statistics.mean(total_accuracy_bc_lc[i]);&amp;#10;}&amp;#10;results = np.polyfit(set_sizes, means_bc_lc, 1)[0];&amp;#10;msg_3 += `${round((results * 1000), 2)}`;&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    means_rs_rc_bs[i] = statistics.mean(total_accuracy_rs_rc_bs[i]);&amp;#10;}&amp;#10;results = np.polyfit(set_sizes, means_rs_rc_bs, 1)[0];&amp;#10;msg_4 += `${round((results * 1000), 2)}`;&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    means_vb_hb[i] = statistics.mean(total_accuracy_vb_hb[i]);&amp;#10;}&amp;#10;results = np.polyfit(set_sizes, means_vb_hb, 1)[0];&amp;#10;msg_5 += `${round((results * 1000), 2)}`;&amp;#10;for (var i, _pj_c = 0, _pj_a = util.range(6), _pj_b = _pj_a.length; (_pj_c &lt; _pj_b); _pj_c += 1) {&amp;#10;    i = _pj_a[_pj_c];&amp;#10;    means_t_l[i] = statistics.mean(total_accuracy_t_l[i]);&amp;#10;}&amp;#10;results = np.polyfit(set_sizes, means_t_l, 1)[0];&amp;#10;msg_6 += `${round((results * 1000), 2)}`;&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="msg_1 = 'Red Square/\nBlue Square:\n\n\n'&amp;#10;msg_2 = 'Red Square/\nRed Circle:\n\n\n'&amp;#10;msg_3 = 'Big Circle/\nLittle Circle:\n\n\n'&amp;#10;msg_4 = 'Red Square/\nRed Circle/\nBlue Square:\n\n'&amp;#10;msg_5 = 'Vertical Bar/\nHorizontal Bar/\nRed Bar:\n\n'&amp;#10;msg_6 = 'T/\nL:\n\n\n'&amp;#10;&amp;#10;&amp;#10;set_sizes = [1,2,4,8,16,32]&amp;#10;means_rs_bs = [0]*6&amp;#10;means_rs_rc = [0]*6&amp;#10;means_bc_lc = [0]*6&amp;#10;means_rs_rc_bs = [0]*6&amp;#10;means_vb_hb = [0]*6&amp;#10;means_t_l = [0]*6&amp;#10;&amp;#10;for i in range(6):&amp;#10;    means_rs_bs[i] = statistics.mean(total_accuracy_rs_bs[i])&amp;#10;results = np.polyfit(set_sizes, means_rs_bs, 1)[0]&amp;#10;msg_1 += f&quot;{round(results*1000, 2)}&quot;&amp;#10;&amp;#10;for i in range(6):&amp;#10;    means_rs_rc[i] = statistics.mean(total_accuracy_rs_rc[i])&amp;#10;results = np.polyfit(set_sizes, means_rs_rc, 1)[0]&amp;#10;msg_2 += f&quot;{round(results*1000, 2)}&quot;&amp;#10;&amp;#10;for i in range(6):&amp;#10;    means_bc_lc[i] = statistics.mean(total_accuracy_bc_lc[i])&amp;#10;results = np.polyfit(set_sizes, means_bc_lc, 1)[0]&amp;#10;msg_3 += f&quot;{round(results*1000, 2)}&quot;&amp;#10;&amp;#10;for i in range(6):&amp;#10;    means_rs_rc_bs[i] = statistics.mean(total_accuracy_rs_rc_bs[i])&amp;#10;results = np.polyfit(set_sizes, means_rs_rc_bs, 1)[0]&amp;#10;msg_4 += f&quot;{round(results*1000, 2)}&quot;&amp;#10;&amp;#10;for i in range(6):&amp;#10;    means_vb_hb[i] = statistics.mean(total_accuracy_vb_hb[i])&amp;#10;results = np.polyfit(set_sizes, means_vb_hb, 1)[0]&amp;#10;msg_5 += f&quot;{round(results*1000, 2)}&quot;&amp;#10;&amp;#10;for i in range(6):&amp;#10;    means_t_l[i] = statistics.mean(total_accuracy_t_l[i])&amp;#10;results = np.polyfit(set_sizes, means_t_l, 1)[0]&amp;#10;msg_6 += f&quot;{round(results*1000, 2)}&quot;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -162,7 +179,7 @@
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_end" valType="code" updates="None" name="name"/>
       </CodeComponent>
-      <TextComponent name="end_text1">
+      <TextComponent name="end_text">
         <Param val="black" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -172,7 +189,7 @@
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
         <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="end_text1" valType="code" updates="None" name="name"/>
+        <Param val="end_text" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, .4)" valType="list" updates="constant" name="pos"/>
@@ -187,7 +204,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
-      <TextComponent name="end_text2">
+      <TextComponent name="end_text_1">
         <Param val="black" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -197,10 +214,10 @@
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
         <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="end_text2" valType="code" updates="None" name="name"/>
+        <Param val="end_text_1" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(-.25, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="(-.6, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -212,7 +229,7 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
-      <TextComponent name="end_text3">
+      <TextComponent name="end_text_2">
         <Param val="black" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -222,10 +239,10 @@
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
         <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="end_text3" valType="code" updates="None" name="name"/>
+        <Param val="end_text_2" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="(.25, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="(-.35, 0)" valType="list" updates="constant" name="pos"/>
         <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
@@ -237,7 +254,107 @@
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
-      <TextComponent name="end_text4">
+      <TextComponent name="end_text_3">
+        <Param val="black" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="end_text_3" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(-.1, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$msg_3" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <TextComponent name="end_text_4">
+        <Param val="black" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="end_text_4" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0.1, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$msg_4" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <TextComponent name="end_text_5">
+        <Param val="black" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="end_text_5" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0.35, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$msg_5" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <TextComponent name="end_text_6">
+        <Param val="black" valType="color" updates="constant" name="color"/>
+        <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
+        <Param val="1" valType="num" updates="constant" name="contrast"/>
+        <Param val="False" valType="bool" updates="None" name="disabled"/>
+        <Param val="" valType="code" updates="None" name="durationEstim"/>
+        <Param val="None" valType="str" updates="constant" name="flip"/>
+        <Param val="Open Sans" valType="str" updates="constant" name="font"/>
+        <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
+        <Param val="0.04" valType="num" updates="constant" name="letterHeight"/>
+        <Param val="end_text_6" valType="code" updates="None" name="name"/>
+        <Param val="" valType="num" updates="constant" name="opacity"/>
+        <Param val="0" valType="num" updates="constant" name="ori"/>
+        <Param val="(0.6, 0)" valType="list" updates="constant" name="pos"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="" valType="code" updates="None" name="startEstim"/>
+        <Param val="time (s)" valType="str" updates="None" name="startType"/>
+        <Param val="0.0" valType="code" updates="None" name="startVal"/>
+        <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
+        <Param val="" valType="code" updates="constant" name="stopVal"/>
+        <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
+        <Param val="$msg_6" valType="str" updates="set every repeat" name="text"/>
+        <Param val="from exp settings" valType="str" updates="None" name="units"/>
+        <Param val="" valType="num" updates="constant" name="wrapWidth"/>
+      </TextComponent>
+      <TextComponent name="end_text_7">
         <Param val="black" valType="color" updates="constant" name="color"/>
         <Param val="rgb" valType="str" updates="constant" name="colorSpace"/>
         <Param val="1" valType="num" updates="constant" name="contrast"/>
@@ -247,7 +364,7 @@
         <Param val="Open Sans" valType="str" updates="constant" name="font"/>
         <Param val="LTR" valType="str" updates="None" name="languageStyle"/>
         <Param val="0.05" valType="num" updates="constant" name="letterHeight"/>
-        <Param val="end_text4" valType="code" updates="None" name="name"/>
+        <Param val="end_text_7" valType="code" updates="None" name="name"/>
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, -.35)" valType="list" updates="constant" name="pos"/>
@@ -381,8 +498,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="total_accuracy_parallel = ([0] * 6);&amp;#10;total_accuracy_serial = ([0] * 6);&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="total_accuracy_parallel = [0] * 6&amp;#10;total_accuracy_serial = [0] * 6" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_2" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -479,8 +596,8 @@
       <CodeComponent name="code">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="&amp;#10;" valType="extendedCode" updates="constant" name="Begin Experiment"/>
-        <Param val="/* Syntax Error: Fix Python code */" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="if ((target_present === true)) {&amp;#10;    corr_ans = &quot;left&quot;;&amp;#10;} else {&amp;#10;    corr_ans = &quot;right&quot;;&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="if target_present == True:&amp;#10;    corr_ans = 'left'&amp;#10;else:&amp;#10;    corr_ans = 'right'&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
@@ -488,8 +605,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="red_square_opacity = 0;&amp;#10;big_circle_opacity = 0;&amp;#10;vertical_bar_opacity = 0;&amp;#10;stim_t_opacity = 0;&amp;#10;if ((search_type === &quot;parallel&quot;)) {&amp;#10;    if ((key_resp.corr === 1)) {&amp;#10;        total_accuracy_parallel[set_size_condition] += key_resp.rt;&amp;#10;    }&amp;#10;} else {&amp;#10;    if ((key_resp.corr === 1)) {&amp;#10;        total_accuracy_serial[set_size_condition] += key_resp.rt;&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="red_square_opacity = 0&amp;#10;big_circle_opacity = 0&amp;#10;vertical_bar_opacity = 0&amp;#10;stim_t_opacity = 0&amp;#10;&amp;#10;&amp;#10;if search_type == &quot;parallel&quot;:&amp;#10;    if key_resp.corr == 1:&amp;#10;        total_accuracy_parallel[set_size_condition] += key_resp.rt&amp;#10;else:&amp;#10;    if key_resp.corr == 1:&amp;#10;        total_accuracy_serial[set_size_condition] += key_resp.rt" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="red_square_opacity = 0;&amp;#10;big_circle_opacity = 0;&amp;#10;vertical_bar_opacity = 0;&amp;#10;stim_t_opacity = 0;&amp;#10;if ((block_type === &quot;red_square_blue_square&quot;)) {&amp;#10;    if ((key_resp.corr === 1)) {&amp;#10;        total_accuracy_rs_bs[set_size_condition].push(key_resp.rt);&amp;#10;    }&amp;#10;} else {&amp;#10;    if ((block_type === &quot;red_square_red_circle&quot;)) {&amp;#10;        if ((key_resp.corr === 1)) {&amp;#10;            total_accuracy_rs_rc[set_size_condition].push(key_resp.rt);&amp;#10;        }&amp;#10;    } else {&amp;#10;        if ((block_type === &quot;big_circle_little_circle&quot;)) {&amp;#10;            if ((key_resp.corr === 1)) {&amp;#10;                total_accuracy_bc_lc[set_size_condition].push(key_resp.rt);&amp;#10;            }&amp;#10;        } else {&amp;#10;            if ((block_type === &quot;red_square_red_circle_blue_square&quot;)) {&amp;#10;                if ((key_resp.corr === 1)) {&amp;#10;                    total_accuracy_rs_rc_bs[set_size_condition].push(key_resp.rt);&amp;#10;                }&amp;#10;            } else {&amp;#10;                if ((block_type === &quot;vertical_bar_horizontal_bar&quot;)) {&amp;#10;                    if ((key_resp.corr === 1)) {&amp;#10;                        total_accuracy_vb_hb[set_size_condition].push(key_resp.rt);&amp;#10;                    }&amp;#10;                } else {&amp;#10;                    if ((block_type === &quot;t_l&quot;)) {&amp;#10;                        if ((key_resp.corr === 1)) {&amp;#10;                            total_accuracy_t_l[set_size_condition].push(key_resp.rt);&amp;#10;                        }&amp;#10;                    }&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="red_square_opacity = 0&amp;#10;big_circle_opacity = 0&amp;#10;vertical_bar_opacity = 0&amp;#10;stim_t_opacity = 0&amp;#10;&amp;#10;if block_type == &quot;red_square_blue_square&quot;:&amp;#10;    if key_resp.corr == 1:&amp;#10;        total_accuracy_rs_bs[set_size_condition].append(key_resp.rt)&amp;#10;elif block_type == &quot;red_square_red_circle&quot;:&amp;#10;    if key_resp.corr == 1:&amp;#10;        total_accuracy_rs_rc[set_size_condition].append(key_resp.rt)&amp;#10;elif block_type == &quot;big_circle_little_circle&quot;:&amp;#10;    if key_resp.corr == 1:&amp;#10;        total_accuracy_bc_lc[set_size_condition].append(key_resp.rt)&amp;#10;elif block_type == &quot;red_square_red_circle_blue_square&quot;:&amp;#10;    if key_resp.corr == 1:&amp;#10;        total_accuracy_rs_rc_bs[set_size_condition].append(key_resp.rt)&amp;#10;elif block_type == &quot;vertical_bar_horizontal_bar&quot;:&amp;#10;    if key_resp.corr == 1:&amp;#10;        total_accuracy_vb_hb[set_size_condition].append(key_resp.rt)&amp;#10;elif block_type == &quot;t_l&quot;:&amp;#10;    if key_resp.corr == 1:&amp;#10;        total_accuracy_t_l[set_size_condition].append(key_resp.rt)&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -541,7 +658,7 @@
         <Param val="big_circle" valType="code" updates="None" name="name"/>
         <Param val="big_circle_opacity" valType="num" updates="set every repeat" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="locations.pop()[0]" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="locations.pop()" valType="list" updates="set every repeat" name="pos"/>
         <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="circle" valType="str" updates="None" name="shape"/>
         <Param val="(0.075, 0.1)" valType="list" updates="set every repeat" name="size"/>
@@ -568,7 +685,7 @@
         <Param val="vertical_bar" valType="code" updates="None" name="name"/>
         <Param val="vertical_bar_opacity" valType="num" updates="set every repeat" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="locations.pop()[0]" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="locations.pop()" valType="list" updates="set every repeat" name="pos"/>
         <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="rectangle" valType="str" updates="None" name="shape"/>
         <Param val="(0.02, 0.1)" valType="list" updates="constant" name="size"/>
@@ -595,7 +712,7 @@
         <Param val="red_square" valType="code" updates="None" name="name"/>
         <Param val="red_square_opacity" valType="num" updates="set every repeat" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
-        <Param val="locations.pop()[0]" valType="list" updates="set every repeat" name="pos"/>
+        <Param val="locations.pop()" valType="list" updates="set every repeat" name="pos"/>
         <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="rectangle" valType="str" updates="None" name="shape"/>
         <Param val="(0.0375, 0.05)" valType="list" updates="constant" name="size"/>
