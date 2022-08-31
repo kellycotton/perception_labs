@@ -9,7 +9,7 @@
 	- Adjust the fixation time (fix_time)
 	- Adjust the number of trials (trial_n) 
 	- Adjust the number of blocks (block_n)
-	- If you change the number of conditions in the freq_conds.csv file, change the total_accuracy multipliers
+	- If you change the number of conditions in the freq_conds files, change the total_accuracy multipliers
 
 2. Practice instructions
 	- Adjust the presented instruction text in instruct_text
@@ -29,4 +29,6 @@
 
 - lab8.psyexp
 - freq_conds_prac.csv
-- freq_conds.csv
+- freq_conds_change.csv
+- freq_conds_diff.csv
+
