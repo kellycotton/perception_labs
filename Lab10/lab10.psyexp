@@ -9,7 +9,7 @@
     <Param val="True" valType="bool" updates="None" name="Enable Escape"/>
     <Param val="{'participant': ''}" valType="code" updates="None" name="Experiment info"/>
     <Param val="True" valType="bool" updates="None" name="Force stereo"/>
-    <Param val="False" valType="bool" updates="None" name="Full-screen window"/>
+    <Param val="True" valType="bool" updates="None" name="Full-screen window"/>
     <Param val="" valType="str" updates="None" name="HTML path"/>
     <Param val="" valType="str" updates="None" name="Incomplete URL"/>
     <Param val="testMonitor" valType="str" updates="None" name="Monitor"/>
@@ -25,7 +25,7 @@
     <Param val="False" valType="bool" updates="None" name="Show mouse"/>
     <Param val="height" valType="str" updates="None" name="Units"/>
     <Param val="2022.1.4" valType="str" updates="None" name="Use version"/>
-    <Param val="[600, 600]" valType="list" updates="None" name="Window size (pixels)"/>
+    <Param val="[1440, 900]" valType="list" updates="None" name="Window size (pixels)"/>
     <Param val="avg" valType="str" updates="None" name="blendMode"/>
     <Param val="$[0,0,0]" valType="color" updates="None" name="color"/>
     <Param val="rgb" valType="str" updates="None" name="colorSpace"/>
@@ -39,7 +39,7 @@
     <Param val="False" valType="bool" updates="None" name="elSimMode"/>
     <Param val="RIGHT_EYE" valType="str" updates="None" name="elTrackEyes"/>
     <Param val="PUPIL_CR_TRACKING" valType="str" updates="None" name="elTrackingMode"/>
-    <Param val="lab8" valType="str" updates="None" name="expName"/>
+    <Param val="lab10" valType="str" updates="None" name="expName"/>
     <Param val="on Sync" valType="str" updates="None" name="exportHTML"/>
     <Param val="None" valType="str" updates="None" name="eyetracker"/>
     <Param val="127.0.0.1" valType="str" updates="None" name="gpAddress"/>
@@ -67,7 +67,7 @@
       <CodeComponent name="code_setup">
         <Param val="" valType="extendedCode" updates="constant" name="Before Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
-        <Param val="import statistics &amp;#10;&amp;#10;fix_time = .5&amp;#10;&amp;#10;trial_n = 1&amp;#10;block_n = 1&amp;#10;block_count = 1&amp;#10;&amp;#10;win.mouseVisible = False&amp;#10;&amp;#10;dg_resps = [0]*20&amp;#10;dg_transition = [0]&amp;#10;bd_resps = [0]*20&amp;#10;bd_transition = [0]&amp;#10;&amp;#10;dg_before_acc = 0&amp;#10;dg_mid_acc = 0&amp;#10;dg_after_acc = 0 &amp;#10;bd_before_acc = 0&amp;#10;bd_mid_acc = 0&amp;#10;bd_after_acc = 0 &amp;#10;&amp;#10;dg_before_trial_n = 0&amp;#10;dg_mid_trial_n = 0&amp;#10;dg_after_trial_n = 0&amp;#10;bd_before_trial_n = 0&amp;#10;bd_mid_trial_n = 0&amp;#10;bd_after_trial_n = 0&amp;#10;&amp;#10;def transition_count(response_array, right_end, transition_array):&amp;#10;    for index, resp in enumerate(response_array):&amp;#10;        if (resp == right_end) and (previous_resp == right_end):&amp;#10;            transition_array.append(index-1)&amp;#10;            break&amp;#10;        previous_resp = resp&amp;#10;    return transition_array" valType="extendedCode" updates="constant" name="Begin Experiment"/>
+        <Param val="import statistics &amp;#10;&amp;#10;fix_time = .5&amp;#10;&amp;#10;trial_n = 1&amp;#10;block_n = 1&amp;#10;block_count = 1&amp;#10;block_multiplier = 2 # should equal number of phoneme pairs tested&amp;#10;&amp;#10;win.mouseVisible = False&amp;#10;&amp;#10;dg_resps = [0]*20&amp;#10;dg_transition = [0]&amp;#10;bd_resps = [0]*20&amp;#10;bd_transition = [0]&amp;#10;&amp;#10;dg_before_acc = 0&amp;#10;dg_mid_acc = 0&amp;#10;dg_after_acc = 0 &amp;#10;bd_before_acc = 0&amp;#10;bd_mid_acc = 0&amp;#10;bd_after_acc = 0 &amp;#10;&amp;#10;dg_before_trial_n = 0&amp;#10;dg_mid_trial_n = 0&amp;#10;dg_after_trial_n = 0&amp;#10;bd_before_trial_n = 0&amp;#10;bd_mid_trial_n = 0&amp;#10;bd_after_trial_n = 0&amp;#10;&amp;#10;def transition_count(response_array, right_end, transition_array):&amp;#10;    for index, resp in enumerate(response_array):&amp;#10;        if (resp == right_end) and (previous_resp == right_end):&amp;#10;            transition_array.append(index-1)&amp;#10;            break&amp;#10;        previous_resp = resp&amp;#10;    return transition_array" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="/* Syntax Error: Fix Python code */" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Routine"/>
@@ -385,7 +385,7 @@
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(0, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="cross" valType="str" updates="None" name="shape"/>
         <Param val="(0.05, 0.05)" valType="list" updates="constant" name="size"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
@@ -682,7 +682,7 @@
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(.2, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
@@ -707,7 +707,7 @@
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(-.2, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
@@ -853,7 +853,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Welcome to the experiment!&amp;#10;&amp;#10;During this experiment, you will hear two melodies consisting of five tones. Your job is to identify if the melodies are the same or different. Please make sure that you have the sound on your computer turned on.&amp;#10;&amp;#10;You will first start the trial by pressing the spacebar. During the trial, you will first see a cross in the center of the screen. This is your warning that the melodies are about to appear and that you should get ready. Then, you will hear the first melody. There will be a brief delay and you will then hear the second melody. Finally, you will see the response screen. When you see the response screen, press the LEFT arrow if the melodies are the SAME and the RIGHT arrow if the melodies are different. &amp;#10;&amp;#10;Let's try a few practice trials.&amp;#10;&amp;#10;Press SPACE to begin the practice." valType="str" updates="constant" name="text"/>
+        <Param val="Welcome to the experiment!&amp;#10;&amp;#10;During this experiment, you will complete two tasks. During the first task, you will hear a sound. Your job is to identify if the sound starts with one of two phonemes. Please make sure that you have the sound on your computer turned on.&amp;#10;&amp;#10;During the trial, you will first see a cross in the center of the screen. This is your warning that the sound is about to appear and that you should get ready. Next, you will hear the sound. Then, you will see the response screen. When you see the response screen, use the arrow keys to indicate which phoneme you think was at the start of the sound.&amp;#10;&amp;#10;Let's try a few practice trials.&amp;#10;&amp;#10;Press SPACE to begin the practice." valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
@@ -865,13 +865,13 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="key_resp_instruct" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="3" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="last key" valType="str" updates="constant" name="store"/>
+        <Param val="nothing" valType="str" updates="constant" name="store"/>
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
@@ -898,7 +898,7 @@
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
         <Param val="True" valType="bool" updates="None" name="syncScreenRefresh"/>
-        <Param val="Welcome to the experiment!&amp;#10;&amp;#10;During this experiment, you will hear two melodies consisting of five tones. Your job is to identify if the melodies are the same or different. Please make sure that you have the sound on your computer turned on.&amp;#10;&amp;#10;You will first start the trial by pressing the spacebar. During the trial, you will first see a cross in the center of the screen. This is your warning that the melodies are about to appear and that you should get ready. Then, you will hear the first melody. There will be a brief delay and you will then hear the second melody. Finally, you will see the response screen. When you see the response screen, press the LEFT arrow if the melodies are the SAME and the RIGHT arrow if the melodies are different. &amp;#10;&amp;#10;Let's try a few practice trials.&amp;#10;&amp;#10;Press SPACE to begin the practice." valType="str" updates="constant" name="text"/>
+        <Param val="Congratulations, you have finished the first task!&amp;#10;&amp;#10;During the second task, you will hear two sounds similar to the sounds you heard earlier. Your job is to identify if the two sounds are the same or different. Please make sure that you have the sound on your computer turned on.&amp;#10;&amp;#10;During the trial, you will first see a cross in the center of the screen. This is your warning that the sounds are about to appear and that you should get ready. Next, you will hear the first sound. There will be a brief delay and then you will hear the second sound. Finally, you will see the response screen. When you see the response screen, press the LEFT arrow key if you think the sounds are the SAME or the RIGHT arrow key if you think the sounds are different.&amp;#10;" valType="str" updates="constant" name="text"/>
         <Param val="from exp settings" valType="str" updates="None" name="units"/>
         <Param val="" valType="num" updates="constant" name="wrapWidth"/>
       </TextComponent>
@@ -910,13 +910,13 @@
         <Param val="" valType="code" updates="None" name="durationEstim"/>
         <Param val="True" valType="bool" updates="constant" name="forceEndRoutine"/>
         <Param val="key_resp_instruct_2" valType="code" updates="None" name="name"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="3" valType="code" updates="None" name="startVal"/>
         <Param val="duration (s)" valType="str" updates="None" name="stopType"/>
         <Param val="" valType="code" updates="constant" name="stopVal"/>
-        <Param val="last key" valType="str" updates="constant" name="store"/>
+        <Param val="nothing" valType="str" updates="constant" name="store"/>
         <Param val="False" valType="bool" updates="constant" name="storeCorrect"/>
         <Param val="True" valType="bool" updates="constant" name="syncScreenRefresh"/>
       </KeyboardComponent>
@@ -951,8 +951,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="End Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="End JS Experiment"/>
-        <Param val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;if ((_pj.in_es6(&quot;dg&quot;, block) &amp;&amp; (choice_cond === 1))) {&amp;#10;    if (((stim_number_1 &lt; midpoint) &amp;&amp; (stim_number_2 &lt; midpoint))) {&amp;#10;        dg_before_trial_n += 1;&amp;#10;        if ((key_resp_4.keys === corr_ans)) {&amp;#10;            dg_before_acc += 1;&amp;#10;        }&amp;#10;    } else {&amp;#10;        if (((stim_number_1 &lt; midpoint) &amp;&amp; (stim_number_2 &gt;= midpoint))) {&amp;#10;            dg_mid_trial_n += 1;&amp;#10;            if ((key_resp_4.keys === corr_ans)) {&amp;#10;                dg_mid_acc += 1;&amp;#10;            }&amp;#10;        } else {&amp;#10;            if (((stim_number_1 &gt;= midpoint) &amp;&amp; (stim_number_2 &gt;= midpoint))) {&amp;#10;                dg_after_trial_n += 1;&amp;#10;                if ((key_resp_4.keys === corr_ans)) {&amp;#10;                    dg_after_acc += 1;&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;if ((_pj.in_es6(&quot;bd&quot;, block) &amp;&amp; (choice_cond === 1))) {&amp;#10;    if (((stim_number_1 &lt; midpoint) &amp;&amp; (stim_number_2 &lt; midpoint))) {&amp;#10;        bd_before_trial_n += 1;&amp;#10;        if ((key_resp_4.keys === corr_ans)) {&amp;#10;            bd_before_acc += 1;&amp;#10;        }&amp;#10;    } else {&amp;#10;        if (((stim_number_1 &lt; midpoint) &amp;&amp; (stim_number_2 &gt;= midpoint))) {&amp;#10;            bd_mid_trial_n += 1;&amp;#10;            if ((key_resp_4.keys === corr_ans)) {&amp;#10;                bd_mid_acc += 1;&amp;#10;            }&amp;#10;        } else {&amp;#10;            if (((stim_number_1 &gt;= midpoint) &amp;&amp; (stim_number_2 &gt;= midpoint))) {&amp;#10;                bd_after_trial_n += 1;&amp;#10;                if ((key_resp_4.keys === corr_ans)) {&amp;#10;                    bd_after_acc += 1;&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
-        <Param val="if (&quot;dg&quot; in block) and (choice_cond == 1):&amp;#10;    if (stim_number_1 &lt; midpoint) and (stim_number_2 &lt; midpoint):&amp;#10;        dg_before_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans):&amp;#10;            dg_before_acc += 1&amp;#10;    elif (stim_number_1 &lt; midpoint) and (stim_number_2 &gt;= midpoint):&amp;#10;        dg_mid_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans):&amp;#10;            dg_mid_acc += 1&amp;#10;    elif (stim_number_1 &gt;= midpoint) and (stim_number_2 &gt;= midpoint):&amp;#10;        dg_after_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans):&amp;#10;            dg_after_acc += 1&amp;#10;&amp;#10;if (&quot;bd&quot; in block) and (choice_cond == 1):&amp;#10;    if (stim_number_1 &lt; midpoint) and (stim_number_2 &lt; midpoint):&amp;#10;        bd_before_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans):&amp;#10;            bd_before_acc += 1&amp;#10;    elif (stim_number_1 &lt; midpoint) and (stim_number_2 &gt;= midpoint):&amp;#10;        bd_mid_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans):&amp;#10;            bd_mid_acc += 1&amp;#10;    elif (stim_number_1 &gt;= midpoint) and (stim_number_2 &gt;= midpoint):&amp;#10;        bd_after_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans):&amp;#10;            bd_after_acc += 1&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
+        <Param val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;if (_pj.in_es6(&quot;dg&quot;, block)) {&amp;#10;    if (((stim_number_1 &lt; midpoint) &amp;&amp; (stim_number_2 &lt; midpoint))) {&amp;#10;        dg_before_trial_n += 1;&amp;#10;        if (((key_resp_4.keys === corr_ans) &amp;&amp; (choice_cond === 1))) {&amp;#10;            dg_before_acc += 1;&amp;#10;        }&amp;#10;    } else {&amp;#10;        if (((stim_number_1 &lt; midpoint) &amp;&amp; (stim_number_2 &gt;= midpoint))) {&amp;#10;            dg_mid_trial_n += 1;&amp;#10;            if (((key_resp_4.keys === corr_ans) &amp;&amp; (choice_cond === 1))) {&amp;#10;                dg_mid_acc += 1;&amp;#10;            }&amp;#10;        } else {&amp;#10;            if (((stim_number_1 &gt;= midpoint) &amp;&amp; (stim_number_2 &gt;= midpoint))) {&amp;#10;                dg_after_trial_n += 1;&amp;#10;                if (((key_resp_4.keys === corr_ans) &amp;&amp; (choice_cond === 1))) {&amp;#10;                    dg_after_acc += 1;&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;if (_pj.in_es6(&quot;bd&quot;, block)) {&amp;#10;    if (((stim_number_1 &lt; midpoint) &amp;&amp; (stim_number_2 &lt; midpoint))) {&amp;#10;        bd_before_trial_n += 1;&amp;#10;        if (((key_resp_4.keys === corr_ans) &amp;&amp; (choice_cond === 1))) {&amp;#10;            bd_before_acc += 1;&amp;#10;        }&amp;#10;    } else {&amp;#10;        if (((stim_number_1 &lt; midpoint) &amp;&amp; (stim_number_2 &gt;= midpoint))) {&amp;#10;            bd_mid_trial_n += 1;&amp;#10;            if (((key_resp_4.keys === corr_ans) &amp;&amp; (choice_cond === 1))) {&amp;#10;                bd_mid_acc += 1;&amp;#10;            }&amp;#10;        } else {&amp;#10;            if (((stim_number_1 &gt;= midpoint) &amp;&amp; (stim_number_2 &gt;= midpoint))) {&amp;#10;                bd_after_trial_n += 1;&amp;#10;                if (((key_resp_4.keys === corr_ans) &amp;&amp; (choice_cond === 1))) {&amp;#10;                    bd_after_acc += 1;&amp;#10;                }&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="End JS Routine"/>
+        <Param val="if (&quot;dg&quot; in block):&amp;#10;    if (stim_number_1 &lt; midpoint) and (stim_number_2 &lt; midpoint):&amp;#10;        dg_before_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans) and (choice_cond == 1):&amp;#10;            dg_before_acc += 1&amp;#10;    elif (stim_number_1 &lt; midpoint) and (stim_number_2 &gt;= midpoint):&amp;#10;        dg_mid_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans) and (choice_cond == 1):&amp;#10;            dg_mid_acc += 1&amp;#10;    elif (stim_number_1 &gt;= midpoint) and (stim_number_2 &gt;= midpoint):&amp;#10;        dg_after_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans) and (choice_cond == 1):&amp;#10;            dg_after_acc += 1&amp;#10;&amp;#10;if (&quot;bd&quot; in block):&amp;#10;    if (stim_number_1 &lt; midpoint) and (stim_number_2 &lt; midpoint):&amp;#10;        bd_before_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans) and (choice_cond == 1):&amp;#10;            bd_before_acc += 1&amp;#10;    elif (stim_number_1 &lt; midpoint) and (stim_number_2 &gt;= midpoint):&amp;#10;        bd_mid_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans) and (choice_cond == 1):&amp;#10;            bd_mid_acc += 1&amp;#10;    elif (stim_number_1 &gt;= midpoint) and (stim_number_2 &gt;= midpoint):&amp;#10;        bd_after_trial_n += 1&amp;#10;        if (key_resp_4.keys == corr_ans) and (choice_cond == 1):&amp;#10;            bd_after_acc += 1&amp;#10;" valType="extendedCode" updates="constant" name="End Routine"/>
         <Param val="False" valType="bool" updates="None" name="disabled"/>
         <Param val="code_5" valType="code" updates="None" name="name"/>
       </CodeComponent>
@@ -1068,7 +1068,7 @@
         <Param val="" valType="num" updates="constant" name="opacity"/>
         <Param val="0" valType="num" updates="constant" name="ori"/>
         <Param val="(-.2, 0)" valType="list" updates="constant" name="pos"/>
-        <Param val="True" valType="bool" updates="None" name="saveStartStop"/>
+        <Param val="False" valType="bool" updates="None" name="saveStartStop"/>
         <Param val="" valType="code" updates="None" name="startEstim"/>
         <Param val="time (s)" valType="str" updates="None" name="startType"/>
         <Param val="0.0" valType="code" updates="None" name="startVal"/>
@@ -1086,8 +1086,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;block_msg = ((((&quot;You have reached the end of block &quot; + block_count.toString()) + &quot; of &quot;) + (block_n * 8).toString()) + &quot; of the first task.&quot;);&amp;#10;if (_pj.in_es6(&quot;dg&quot;, block)) {&amp;#10;    dg_transition = transition_count(dg_resps, right_resp, dg_transition);&amp;#10;} else {&amp;#10;    if (_pj.in_es6(&quot;bd&quot;, block)) {&amp;#10;        bd_transition = transition_count(bd_resps, right_resp, bd_transition);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="block_msg = &quot;You have reached the end of block &quot; + str(block_count) + &quot; of &quot; + str(block_n*8) + &quot; of the first task.&quot; &amp;#10;&amp;#10;if &quot;dg&quot; in block:&amp;#10;    dg_transition = transition_count(dg_resps, right_resp, dg_transition)&amp;#10;elif &quot;bd&quot; in block:&amp;#10;    bd_transition = transition_count(bd_resps, right_resp, bd_transition)&amp;#10;&amp;#10;&amp;#10;&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="var _pj;&amp;#10;function _pj_snippets(container) {&amp;#10;    function in_es6(left, right) {&amp;#10;        if (((right instanceof Array) || ((typeof right) === &quot;string&quot;))) {&amp;#10;            return (right.indexOf(left) &gt; (- 1));&amp;#10;        } else {&amp;#10;            if (((right instanceof Map) || (right instanceof Set) || (right instanceof WeakMap) || (right instanceof WeakSet))) {&amp;#10;                return right.has(left);&amp;#10;            } else {&amp;#10;                return (left in right);&amp;#10;            }&amp;#10;        }&amp;#10;    }&amp;#10;    container[&quot;in_es6&quot;] = in_es6;&amp;#10;    return container;&amp;#10;}&amp;#10;_pj = {};&amp;#10;_pj_snippets(_pj);&amp;#10;block_msg = ((((&quot;You have reached the end of block &quot; + block_count.toString()) + &quot; of &quot;) + (block_n * block_multiplier).toString()) + &quot; of the first task.&quot;);&amp;#10;if (_pj.in_es6(&quot;dg&quot;, block)) {&amp;#10;    dg_transition = transition_count(dg_resps, right_resp, dg_transition);&amp;#10;} else {&amp;#10;    if (_pj.in_es6(&quot;bd&quot;, block)) {&amp;#10;        bd_transition = transition_count(bd_resps, right_resp, bd_transition);&amp;#10;    }&amp;#10;}&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="block_msg = &quot;You have reached the end of block &quot; + str(block_count) + &quot; of &quot; + str(block_n*block_multiplier) + &quot; of the first task.&quot; &amp;#10;&amp;#10;if &quot;dg&quot; in block:&amp;#10;    dg_transition = transition_count(dg_resps, right_resp, dg_transition)&amp;#10;elif &quot;bd&quot; in block:&amp;#10;    bd_transition = transition_count(bd_resps, right_resp, bd_transition)&amp;#10;&amp;#10;&amp;#10;&amp;#10;&amp;#10;" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>
@@ -1173,8 +1173,8 @@
         <Param val="" valType="extendedCode" updates="constant" name="Before JS Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin Experiment"/>
         <Param val="" valType="extendedCode" updates="constant" name="Begin JS Experiment"/>
-        <Param val="block_msg = ((((&quot;You have reached the end of block &quot; + block_count.toString()) + &quot; of &quot;) + (block_n * 8).toString()) + &quot; of the second task.&quot;);&amp;#10;console.log(dg_before_acc, dg_mid_acc, dg_after_acc, bd_before_acc, bd_mid_acc, bd_after_acc);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
-        <Param val="block_msg = &quot;You have reached the end of block &quot; + str(block_count) + &quot; of &quot; + str(block_n*8) + &quot; of the second task.&quot; &amp;#10;&amp;#10;&amp;#10;&amp;#10;print(dg_before_acc, dg_mid_acc, dg_after_acc, bd_before_acc, bd_mid_acc, bd_after_acc)" valType="extendedCode" updates="constant" name="Begin Routine"/>
+        <Param val="block_msg = ((((&quot;You have reached the end of block &quot; + block_count.toString()) + &quot; of &quot;) + (block_n * block_multiplier).toString()) + &quot; of the second task.&quot;);&amp;#10;console.log(dg_before_acc, dg_mid_acc, dg_after_acc, bd_before_acc, bd_mid_acc, bd_after_acc);&amp;#10;" valType="extendedCode" updates="constant" name="Begin JS Routine"/>
+        <Param val="block_msg = &quot;You have reached the end of block &quot; + str(block_count) + &quot; of &quot; + str(block_n*block_multiplier) + &quot; of the second task.&quot; &amp;#10;&amp;#10;&amp;#10;&amp;#10;print(dg_before_acc, dg_mid_acc, dg_after_acc, bd_before_acc, bd_mid_acc, bd_after_acc)" valType="extendedCode" updates="constant" name="Begin Routine"/>
         <Param val="Auto-&gt;JS" valType="str" updates="None" name="Code Type"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each Frame"/>
         <Param val="" valType="extendedCode" updates="constant" name="Each JS Frame"/>

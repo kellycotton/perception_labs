@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.1.4),
-    on Wed Aug 31 12:48:53 2022
+    on Thu Sep  8 10:10:39 2022
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -105,8 +105,8 @@ fix_time = .5
 stim_vol = 0
 stim_vols = [0]*4
 
-trial_n = 1
-block_n = 1
+trial_n = 2
+block_n = 2
 block_count = 1
 
 total_accuracy_change = [0] * 4

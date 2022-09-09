@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.1.4),
-    on Fri Sep  2 12:52:26 2022
+    on Wed Sep  7 18:05:46 2022
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -38,7 +38,7 @@ _thisDir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(_thisDir)
 # Store info about the experiment session
 psychopyVersion = '2022.1.4'
-expName = 'lab8'  # from the Builder filename that created this script
+expName = 'lab10'  # from the Builder filename that created this script
 expInfo = {
     'participant': '',
 }
@@ -69,8 +69,8 @@ frameTolerance = 0.001  # how close to onset before 'same' frame
 
 # Setup the Window
 win = visual.Window(
-    size=[600, 600], fullscr=False, screen=0, 
-    winType='pyglet', allowGUI=True, allowStencil=False,
+    size=[1440, 900], fullscr=True, screen=0, 
+    winType='pyglet', allowGUI=False, allowStencil=False,
     monitor='testMonitor', color=[0,0,0], colorSpace='rgb',
     blendMode='avg', useFBO=True, 
     units='height')
@@ -104,6 +104,7 @@ fix_time = .5
 trial_n = 1
 block_n = 1
 block_count = 1
+block_multiplier = 2 # should equal number of phoneme pairs tested
 
 win.mouseVisible = False
 
@@ -137,7 +138,7 @@ def transition_count(response_array, right_end, transition_array):
 # Initialize components for Routine "instructions_id"
 instructions_idClock = core.Clock()
 instruct_text = visual.TextStim(win=win, name='instruct_text',
-    text="Welcome to the experiment!\n\nDuring this experiment, you will hear two melodies consisting of five tones. Your job is to identify if the melodies are the same or different. Please make sure that you have the sound on your computer turned on.\n\nYou will first start the trial by pressing the spacebar. During the trial, you will first see a cross in the center of the screen. This is your warning that the melodies are about to appear and that you should get ready. Then, you will hear the first melody. There will be a brief delay and you will then hear the second melody. Finally, you will see the response screen. When you see the response screen, press the LEFT arrow if the melodies are the SAME and the RIGHT arrow if the melodies are different. \n\nLet's try a few practice trials.\n\nPress SPACE to begin the practice.",
+    text="Welcome to the experiment!\n\nDuring this experiment, you will complete two tasks. During the first task, you will hear a sound. Your job is to identify if the sound starts with one of two phonemes. Please make sure that you have the sound on your computer turned on.\n\nDuring the trial, you will first see a cross in the center of the screen. This is your warning that the sound is about to appear and that you should get ready. Next, you will hear the sound. Then, you will see the response screen. When you see the response screen, use the arrow keys to indicate which phoneme you think was at the start of the sound.\n\nLet's try a few practice trials.\n\nPress SPACE to begin the practice.",
     font='Open Sans',
     pos=(0, 0), height=0.03, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
@@ -203,7 +204,7 @@ key_resp_block_cont = keyboard.Keyboard()
 # Initialize components for Routine "instructions_disc"
 instructions_discClock = core.Clock()
 instruct_text_2 = visual.TextStim(win=win, name='instruct_text_2',
-    text="Welcome to the experiment!\n\nDuring this experiment, you will hear two melodies consisting of five tones. Your job is to identify if the melodies are the same or different. Please make sure that you have the sound on your computer turned on.\n\nYou will first start the trial by pressing the spacebar. During the trial, you will first see a cross in the center of the screen. This is your warning that the melodies are about to appear and that you should get ready. Then, you will hear the first melody. There will be a brief delay and you will then hear the second melody. Finally, you will see the response screen. When you see the response screen, press the LEFT arrow if the melodies are the SAME and the RIGHT arrow if the melodies are different. \n\nLet's try a few practice trials.\n\nPress SPACE to begin the practice.",
+    text='Congratulations, you have finished the first task!\n\nDuring the second task, you will hear two sounds similar to the sounds you heard earlier. Your job is to identify if the two sounds are the same or different. Please make sure that you have the sound on your computer turned on.\n\nDuring the trial, you will first see a cross in the center of the screen. This is your warning that the sounds are about to appear and that you should get ready. Next, you will hear the first sound. There will be a brief delay and then you will hear the second sound. Finally, you will see the response screen. When you see the response screen, press the LEFT arrow key if you think the sounds are the SAME or the RIGHT arrow key if you think the sounds are different.\n',
     font='Open Sans',
     pos=(0, 0), height=0.03, wrapWidth=None, ori=0.0, 
     color='white', colorSpace='rgb', opacity=None, 
@@ -480,15 +481,6 @@ while continueRoutine:
 for thisComponent in instructions_idComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-# check responses
-if key_resp_instruct.keys in ['', [], None]:  # No response was made
-    key_resp_instruct.keys = None
-thisExp.addData('key_resp_instruct.keys',key_resp_instruct.keys)
-if key_resp_instruct.keys != None:  # we had a response
-    thisExp.addData('key_resp_instruct.rt', key_resp_instruct.rt)
-thisExp.addData('key_resp_instruct.started', key_resp_instruct.tStartRefresh)
-thisExp.addData('key_resp_instruct.stopped', key_resp_instruct.tStopRefresh)
-thisExp.nextEntry()
 # the Routine "instructions_id" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -595,8 +587,6 @@ for thisBlock_id in block_id:
         for thisComponent in fixationComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        trials_id.addData('fixation_stim.started', fixation_stim.tStartRefresh)
-        trials_id.addData('fixation_stim.stopped', fixation_stim.tStopRefresh)
         # the Routine "fixation" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
@@ -727,10 +717,6 @@ for thisBlock_id in block_id:
         trials_id.addData('key_resp_3.keys',key_resp_3.keys)
         if key_resp_3.keys != None:  # we had a response
             trials_id.addData('key_resp_3.rt', key_resp_3.rt)
-        trials_id.addData('text_6.started', text_6.tStartRefresh)
-        trials_id.addData('text_6.stopped', text_6.tStopRefresh)
-        trials_id.addData('text_4.started', text_4.tStartRefresh)
-        trials_id.addData('text_4.stopped', text_4.tStopRefresh)
         # the Routine "trial_id" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         thisExp.nextEntry()
@@ -741,7 +727,7 @@ for thisBlock_id in block_id:
     # ------Prepare to start Routine "end_block_id"-------
     continueRoutine = True
     # update component parameters for each repeat
-    block_msg = "You have reached the end of block " + str(block_count) + " of " + str(block_n*8) + " of the first task." 
+    block_msg = "You have reached the end of block " + str(block_count) + " of " + str(block_n*block_multiplier) + " of the first task." 
     
     if "dg" in block:
         dg_transition = transition_count(dg_resps, right_resp, dg_transition)
@@ -935,15 +921,6 @@ while continueRoutine:
 for thisComponent in instructions_discComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-# check responses
-if key_resp_instruct_2.keys in ['', [], None]:  # No response was made
-    key_resp_instruct_2.keys = None
-thisExp.addData('key_resp_instruct_2.keys',key_resp_instruct_2.keys)
-if key_resp_instruct_2.keys != None:  # we had a response
-    thisExp.addData('key_resp_instruct_2.rt', key_resp_instruct_2.rt)
-thisExp.addData('key_resp_instruct_2.started', key_resp_instruct_2.tStartRefresh)
-thisExp.addData('key_resp_instruct_2.stopped', key_resp_instruct_2.tStopRefresh)
-thisExp.nextEntry()
 # the Routine "instructions_disc" was not non-slip safe, so reset the non-slip timer
 routineTimer.reset()
 
@@ -1050,8 +1027,6 @@ for thisBlock_disc in block_disc:
         for thisComponent in fixationComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        trials_disc.addData('fixation_stim.started', fixation_stim.tStartRefresh)
-        trials_disc.addData('fixation_stim.stopped', fixation_stim.tStopRefresh)
         # the Routine "fixation" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         
@@ -1194,32 +1169,32 @@ for thisBlock_disc in block_disc:
         for thisComponent in trial_discComponents:
             if hasattr(thisComponent, "setAutoDraw"):
                 thisComponent.setAutoDraw(False)
-        if ("dg" in block) and (choice_cond == 1):
+        if ("dg" in block):
             if (stim_number_1 < midpoint) and (stim_number_2 < midpoint):
                 dg_before_trial_n += 1
-                if (key_resp_4.keys == corr_ans):
+                if (key_resp_4.keys == corr_ans) and (choice_cond == 1):
                     dg_before_acc += 1
             elif (stim_number_1 < midpoint) and (stim_number_2 >= midpoint):
                 dg_mid_trial_n += 1
-                if (key_resp_4.keys == corr_ans):
+                if (key_resp_4.keys == corr_ans) and (choice_cond == 1):
                     dg_mid_acc += 1
             elif (stim_number_1 >= midpoint) and (stim_number_2 >= midpoint):
                 dg_after_trial_n += 1
-                if (key_resp_4.keys == corr_ans):
+                if (key_resp_4.keys == corr_ans) and (choice_cond == 1):
                     dg_after_acc += 1
         
-        if ("bd" in block) and (choice_cond == 1):
+        if ("bd" in block):
             if (stim_number_1 < midpoint) and (stim_number_2 < midpoint):
                 bd_before_trial_n += 1
-                if (key_resp_4.keys == corr_ans):
+                if (key_resp_4.keys == corr_ans) and (choice_cond == 1):
                     bd_before_acc += 1
             elif (stim_number_1 < midpoint) and (stim_number_2 >= midpoint):
                 bd_mid_trial_n += 1
-                if (key_resp_4.keys == corr_ans):
+                if (key_resp_4.keys == corr_ans) and (choice_cond == 1):
                     bd_mid_acc += 1
             elif (stim_number_1 >= midpoint) and (stim_number_2 >= midpoint):
                 bd_after_trial_n += 1
-                if (key_resp_4.keys == corr_ans):
+                if (key_resp_4.keys == corr_ans) and (choice_cond == 1):
                     bd_after_acc += 1
         
         sound_id_2.stop()  # ensure sound has stopped at end of routine
@@ -1239,8 +1214,6 @@ for thisBlock_disc in block_disc:
             trials_disc.addData('key_resp_4.rt', key_resp_4.rt)
         trials_disc.addData('text_7.started', text_7.tStartRefresh)
         trials_disc.addData('text_7.stopped', text_7.tStopRefresh)
-        trials_disc.addData('text_10.started', text_10.tStartRefresh)
-        trials_disc.addData('text_10.stopped', text_10.tStopRefresh)
         # the Routine "trial_disc" was not non-slip safe, so reset the non-slip timer
         routineTimer.reset()
         thisExp.nextEntry()
@@ -1251,7 +1224,7 @@ for thisBlock_disc in block_disc:
     # ------Prepare to start Routine "end_block_disc"-------
     continueRoutine = True
     # update component parameters for each repeat
-    block_msg = "You have reached the end of block " + str(block_count) + " of " + str(block_n*8) + " of the second task." 
+    block_msg = "You have reached the end of block " + str(block_count) + " of " + str(block_n*block_multiplier) + " of the second task." 
     
     
     

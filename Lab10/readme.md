@@ -1,14 +1,12 @@
-# PSY103L Lab 9
+# PSY103L Lab 10
 ## Melody Discrimination 
 
 ### Experimental Flow
 
 1. Experiment setup
-	- Adjust the tone presentation time (tone_time)
 	- Adjust the fixation time (fix_time)
 	- Adjust the number of trials per condition (trial_n) per block
 	- Adjust the number of blocks (block_n)
-	- If you change the number of conditions in the tone_conds.csv file, change the total_accuracy multipliers 
 
 2. Practice instructions
 	- Adjust the presented instruction text in instruct_text
@@ -27,5 +25,9 @@
 
 ### Files needed
 
-- lab9.psyexp
-- tone_conds.csv
+- lab10.psyexp
+- stim_conds_id.csv
+- stim_conds_disc.csv
+- block_conds_id.csv
+- block_conds_disc.csv
+
