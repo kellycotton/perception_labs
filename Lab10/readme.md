@@ -27,7 +27,7 @@
 ### Files needed
 
 - lab10.psyexp
-- CV_stimuli sound files
+- CV_stimuli sound files from [Stephens & Holt (2011)](https://osf.io/g543z/)
 - stim_conds_id.csv
 - stim_conds_disc.csv
 - block_conds_id.csv
