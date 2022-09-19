@@ -1,5 +1,5 @@
 # PSY103L Lab 10
-## Melody Discrimination 
+## Categorical Perception
 
 ### Experimental Flow
 
@@ -19,6 +19,7 @@
 
 5. Experimental trials
 	- Number of trials per condition and number of blocks can be changed in the experiment setup.
+	- Two tasks (identification and discrimination)
 
 6. Results
 
@@ -26,8 +27,10 @@
 ### Files needed
 
 - lab10.psyexp
+- CV_stimuli sound files
 - stim_conds_id.csv
 - stim_conds_disc.csv
 - block_conds_id.csv
 - block_conds_disc.csv
+- stim_conds_id_prac.csv
 
