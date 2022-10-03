@@ -1,9 +1,0 @@
-﻿block,stimuli_sound,stim_number,left_resp_disp,right_resp_disp,left_resp,right_resp
-a_dg,CV_stimuli/a/a_dg_CV/01.wav,0,da,ga,d,g
-a_dg,CV_stimuli/a/a_dg_CV/20.wav,19,da,ga,d,g
-ae_dg,CV_stimuli/ae/ae_dg_CV/01.wav,0,dae,gae,d,g
-ae_dg,CV_stimuli/ae/ae_dg_CV/20.wav,19,dae,gae,d,g
-i_bd,CV_stimuli/i/i_bd_CV/01.wav,0,bi,di,b,d
-i_bd,CV_stimuli/i/i_bd_CV/20.wav,19,bi,di,b,d
-u_bd,CV_stimuli/u/u_bd_CV/01.wav,0,bu,du,b,d
-u_bd,CV_stimuli/u/u_bd_CV/20.wav,19,bu,du,b,d

@@ -14,4 +14,4 @@ Created by Kelly Cotton 2022
  1. Attentional Blink 
  1. Tone Discrimination by Frequency
  1. Melody Discrimination 
- 1. Categorical Perception
+ 1. Multisensory Perception
