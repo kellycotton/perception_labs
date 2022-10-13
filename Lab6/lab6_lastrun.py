@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This experiment was created using PsychoPy3 Experiment Builder (v2022.1.4),
-    on Thu Aug 25 14:12:05 2022
+    on Tue Oct 11 16:11:36 2022
 If you publish work using this script the most relevant publication is:
 
     Peirce J, Gray JR, Simpson S, MacAskill M, Höchenberger R, Sogo H, Kastman E, Lindeløv JK. (2019) 
@@ -108,6 +108,7 @@ block_count = 1
 block_n = 3
 trial_n = 5
 trial_total = 2
+trial_count = 0
 
 total_accuracy_t2_t1 = [0] * 8
 total_accuracy_t1 = [0] * 8
@@ -1071,9 +1072,9 @@ for thisPractice_trial_2 in practice_trials_2:
     feedback_msg_2 = ''
     
     if key_resp_2.corr == 1:
-        feedback_msg_2 = "\nYour first answer was correct!"
+        feedback_msg_2 = "\nYour second answer was correct!"
     else:
-        feedback_msg_2 = f"\nYour first answer was incorrect. The correct answer was {stim_letters[1]}."
+        feedback_msg_2 = f"\nYour second answer was incorrect. The correct answer was {stim_letters[1]}."
         
     if (key_resp_1.corr == 1) and (key_resp_2.corr == 1):
         total_accuracy_t2_t1[lag_cond-1] += 1
@@ -1081,7 +1082,7 @@ for thisPractice_trial_2 in practice_trials_2:
     if (key_resp_1.corr == 1):
         total_accuracy_t1[lag_cond-1] += 1
     
-    
+    trial_count += 1
     # check responses
     if key_resp_2.keys in ['', [], None]:  # No response was made
         key_resp_2.keys = None
@@ -1206,7 +1207,7 @@ _key_resp_end_prac_allKeys = []
 
 total_accuracy_t2_t1 = [0] * 8
 total_accuracy_t1 = [0] * 8
-
+trial_count = 0
 # keep track of which components have finished
 end_practiceComponents = [end_practice_text, key_resp_end_prac]
 for thisComponent in end_practiceComponents:
@@ -1906,9 +1907,9 @@ for thisBlock in blocks:
         feedback_msg_2 = ''
         
         if key_resp_2.corr == 1:
-            feedback_msg_2 = "\nYour first answer was correct!"
+            feedback_msg_2 = "\nYour second answer was correct!"
         else:
-            feedback_msg_2 = f"\nYour first answer was incorrect. The correct answer was {stim_letters[1]}."
+            feedback_msg_2 = f"\nYour second answer was incorrect. The correct answer was {stim_letters[1]}."
             
         if (key_resp_1.corr == 1) and (key_resp_2.corr == 1):
             total_accuracy_t2_t1[lag_cond-1] += 1
@@ -1916,7 +1917,7 @@ for thisBlock in blocks:
         if (key_resp_1.corr == 1):
             total_accuracy_t1[lag_cond-1] += 1
         
-        
+        trial_count += 1
         # check responses
         if key_resp_2.keys in ['', [], None]:  # No response was made
             key_resp_2.keys = None
@@ -1941,6 +1942,8 @@ for thisBlock in blocks:
     continueRoutine = True
     # update component parameters for each repeat
     block_msg = "You have reached the end of block " + str(block_count) + " of " + str(block_n) + "." 
+    
+    print(trial_count)
     block_message1.setText(block_msg)
     key_resp_block_cont.keys = []
     key_resp_block_cont.rt = []
@@ -2046,12 +2049,12 @@ msg_2 = 'T2|T1\n\n'
 
 
 for i in range(8):
-    msg_1 += f"Lag {i+1}:   {round((total_accuracy_t1[i])/(trial_n*block_n), 2)}\n"
-    thisExp.addData(f"Lag {i+1} total_accuracy_t2_miss_t1", round((total_accuracy_t1[i])/(trial_n*block_n), 2))
+    msg_1 += f"Lag {i+1}:   {round((total_accuracy_t1[i])/(trial_n*trial_total*block_n), 2)}\n"
+    thisExp.addData(f"Lag {i+1} total_accuracy_t2_miss_t1", round((total_accuracy_t1[i])/(trial_n*trial_total*block_n), 2))
     
 for i in range(8):
-    msg_2 += f"{round(round((total_accuracy_t2_t1[i])/(trial_n*block_n), 2)/round((total_accuracy_t1[i])/(trial_n*block_n), 2), 2)}\n"
-    thisExp.addData(f"Lag {i+1} total_accuracy_t2_t1", round(round((total_accuracy_t2_t1[i])/(trial_n*block_n), 2)/round((total_accuracy_t1[i])/(trial_n*block_n), 2), 2))
+    msg_2 += f"{round(round((total_accuracy_t2_t1[i])/(trial_n*trial_total*block_n), 2)/round((total_accuracy_t1[i])/(trial_n*trial_total*block_n), 2), 2)}\n"
+    thisExp.addData(f"Lag {i+1} total_accuracy_t2_t1", round(round((total_accuracy_t2_t1[i])/(trial_n*trial_total*block_n), 2)/round((total_accuracy_t1[i])/(trial_n*trial_total*block_n), 2), 2))
 
 end_text_1.setText(msg_1)
 end_text_2.setText(msg_2)
