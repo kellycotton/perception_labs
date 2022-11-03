@@ -1,14 +1,15 @@
-# PSY103L Lab 10
-## Multisensory Perception
+# PSY103L Lab 7
+## Tone Discrimination by Frequency
 
 ### Experimental Flow
 
 1. Experiment setup
+	- Adjust the stimulus tone presentation time (tone_time)
+	- Adjust the time between tone presentations (tone_delay)
 	- Adjust the fixation time (fix_time)
-	- Adjust duration of beep (beep_dur) and flash (flash_dur)
-	- Adjust delay between beeps (beep_delay) and flashes (flash_delay)
-	- Adjust the number of trials per condition (trial_n) per block
+	- Adjust the number of trials (trial_n) 
 	- Adjust the number of blocks (block_n)
+	- If you change the number of conditions in the freq_conds files, change the total_accuracy multipliers
 
 2. Practice instructions
 	- Adjust the presented instruction text in instruct_text
@@ -20,12 +21,14 @@
 	- Adjust the presented instruction text in end_practice_text
 
 5. Experimental trials
-	- Number of trials per condition and number of blocks can be changed in the experiment setup.
 
 6. Results
 
 
 ### Files needed
 
-- lab10.psyexp
-- stim_conds.csv
+- lab7.psyexp
+- freq_conds_prac.csv
+- freq_conds_change.csv
+- freq_conds_diff.csv
+
